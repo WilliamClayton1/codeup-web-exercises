@@ -14,4 +14,5 @@ console.log("Your answer is " + userAnswer);
 let userConfirm = confirm("We are learning JavaScript.");
 
 console.log("You said it's " + userConfirm + " that we are learning JavaScript.");
+console.log("You said it's " + userConfirm + " that we are learning JavaScript.");
 
