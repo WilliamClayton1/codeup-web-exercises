@@ -40,7 +40,7 @@ let isClassFull = confirm("Is the class full?");
 
 let schedule = confirm("Does this class fit into your schedule?");
 
-if (isClassFull === true && schedule === true){
+if (isClassFull === false && schedule === true){
     alert("AWESOME!!! You've been enrolled in class.");
 } else {
     alert("Sorry, you will not be able to attend this class.");
