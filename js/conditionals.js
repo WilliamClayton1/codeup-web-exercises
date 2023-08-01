@@ -177,6 +177,7 @@ alert(`${calculateTotal(luckyNumber, userTotal)}`);
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+
 let userConfirm = confirm("Would you like to enter a number?");
 
 if (userConfirm) {

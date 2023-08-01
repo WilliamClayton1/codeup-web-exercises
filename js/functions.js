@@ -109,7 +109,7 @@ alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
  */
 
 function applyDiscount(price, discount) {
-    let discounted = price * discount
-    return price - discounted;
+    let discounted = price * discount;
+    let total = price - discounted;
+    return `$${total.toFixed(2)}`;
 }
-
