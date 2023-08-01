@@ -22,26 +22,26 @@
  * console.logging the function's return value
  */
 
-function analyzeColor(input) {
-
-    let output = input.toLowerCase()
-
-    if (output === 'red') {
-        return (output + ' like roses.');
-    } else if (output === 'blue') {
-        return (output + ' like blueberries.');
-    } else if (output === 'orange') {
-        return (output + ' like oranges.');
-    } else if (output === 'green') {
-        return (output + ' like grass.');
-    } else if (output === 'yellow') {
-        return (output + ' like the sun.');
-    } else if (output === 'purple') {
-        return (output + ' like grapes.');
-    } else {
-        return ("I don't know anything by that color.");
-    }
-}
+// function analyzeColor(input) {
+//
+//     let output = input.toLowerCase()
+//
+//     if (output === 'red') {
+//         return (output + ' like roses.');
+//     } else if (output === 'blue') {
+//         return (output + ' like blueberries.');
+//     } else if (output === 'orange') {
+//         return (output + ' like oranges.');
+//     } else if (output === 'green') {
+//         return (output + ' like grass.');
+//     } else if (output === 'yellow') {
+//         return (output + ' like the sun.');
+//     } else if (output === 'purple') {
+//         return (output + ' like grapes.');
+//     } else {
+//         return ("I don't know anything by that color.");
+//     }
+// }
 
 
 function analyzeColor(input) {
@@ -59,10 +59,12 @@ function analyzeColor(input) {
             return (output + ' like grass.');
         case 'yellow':
             return (output + ' like the sun.');
-        case 'purple':
-            return (output + ' like grapes.');
+        case 'indigo':
+            return (output + ' like paint.');
+        case 'violet':
+            return ( output + ' like pants');
         default:
-            return ("I don't know anything by that color.");
+            return "I don't know anything by that color."
     }
 }
 
@@ -72,16 +74,16 @@ function analyzeColor(input) {
 // - `colors`: a list of the colors of the rainbow
 // - `randomColor`: contains a single random color value from the list (this
 //                  will contain a different color every time the page loads)
-let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-let randomColor = colors[Math.floor(Math.random() * colors.length)];
+// let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// let randomColor = colors[Math.floor(Math.random() * colors.length)];
 /**
  * TODO:
  * Pass the `randomColor` variable to your 'analyzeColor' function and console.log the results.
  * You should see a different message every time you refresh the page
  */
 
-let test = analyzeColor(randomColor);
-console.log(test);
+// let test = analyzeColor(randomColor);
+// console.log(test);
 
 /**
  * TODO:
@@ -95,11 +97,11 @@ console.log(test);
  * function to show it to the user.
  */
 
-let userColor = prompt('What is your favorite color?')
-
-let answer = analyzeColor(userColor);
-
-alert(answer);
+// let userColor = prompt('What is your favorite color?')
+//
+// let answer = analyzeColor(userColor);
+//
+// alert(answer);
 
 /* ########################################################################## */
 
