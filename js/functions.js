@@ -30,7 +30,7 @@ console.log(helloMessage);
  * variable to the 'sayHello' function. You should see the same output in the
  * console.
  */
-
+//
 let myName = "Will";
 
 console.log(sayHello(myName));
@@ -89,11 +89,9 @@ let userPrice = prompt("What is your total price of your bill?");
 
 let userTip = prompt("How much would you like to tip?");
 
-let calculatedPrice = calculateTip(parseFloat(userTip), parseFloat(userPrice));
+let calculatedPrice = calculateTip((parseFloat(userTip)/100), parseFloat(userPrice));
 
-let totalPrice = calculatedPrice + parseFloat(userPrice);
-
-alert(`The total price for your bill is $${totalPrice}`);
+alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
 
 /**
  * TODO:
@@ -114,3 +112,4 @@ function applyDiscount(price, discount) {
     let discounted = price * discount
     return price - discounted;
 }
+

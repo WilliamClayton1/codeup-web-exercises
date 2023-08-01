@@ -185,7 +185,7 @@ if (userConfirm) {
     if (!isNaN(userNumber)) {
         let parsedNumber = parseFloat(userNumber);
 
-        let evenOrOddMessage = "";
+        let evenOrOddMessage;
         if (parsedNumber % 2 === 0) {
             evenOrOddMessage = "Your number is even!"
         } else {
