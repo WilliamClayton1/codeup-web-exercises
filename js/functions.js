@@ -87,7 +87,7 @@ function calculateTip(tip, price) {
 
 let userPrice = prompt("What is your total price of your bill?");
 
-let userTip = prompt("How much would you like to tip?");
+let userTip = prompt("What percent would you like to tip?");
 
 let calculatedPrice = calculateTip((parseFloat(userTip)/100), parseFloat(userPrice));
 
@@ -108,8 +108,12 @@ alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
+let discountPercentRandom = Math.random().toFixed(2);
+
 function applyDiscount(price, discount) {
     let discounted = price * discount;
     let total = price - discounted;
     return `$${total.toFixed(2)}`;
 }
+
+console.log(applyDiscount(100, discountPercentRandom));
