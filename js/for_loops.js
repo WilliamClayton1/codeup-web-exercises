@@ -20,7 +20,8 @@
 // }
 
 for (let i = 1; i < 10; i++) {
-    console.log(i);
+    let convert = String(i);
+    console.log(convert);
     for (i = 2; i < 10; i++) {
         let convert = String(i);
         let repeater = convert.repeat(2);
