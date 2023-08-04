@@ -1,3 +1,9 @@
 "use strict";
 
-// let userInput = prompt("")
+let i = 1;
+
+while () {
+
+}
+
+
