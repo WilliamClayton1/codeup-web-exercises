@@ -1,9 +1,10 @@
 "use strict";
 
-let i = 1;
+let userAnswer = parseInt(prompt('Pick an odd number between 1 and 50.'));
 
-while () {
-
+while(isNaN(userAnswer)) {
+    alert(`That's not right, Try again.`);
+    userAnswer = parseInt(prompt('Pick an odd number between 1 and 50.'));
 }
 
 
