@@ -1,24 +1,25 @@
-//Loops any number in multiplication from 1-10
-// function showMultiplicationTable (x) {
-//     for (let i = 1; i <= 10; i++) {
-//         let answer = (x * i);
-//         console.log(`${x} x ${i} = ${answer}`);
-//     }
-// }
-//
-// showMultiplicationTable(9)
+// Loops any number in multiplication from 1-10
+function showMultiplicationTable (x) {
+    for (let i = 1; i <= 10; i++) {
+        let answer = (x * i);
+        console.log(`${x} x ${i} = ${answer}`);
+    }
+}
 
-//Loops random number 10 times and determines if number is even or odd
-// for (let i = 1; i <= 10; i++) {
-//     let random = Math.floor((Math.random() * 200) + 20);
-//
-//     if(random % 2 === 0) {
-//         console.log(`${random} is even`);
-//     } else {
-//         console.log(`${random} is odd`);
-//     }
-// }
+showMultiplicationTable(9)
 
+// Loops random number 10 times and determines if number is even or odd
+for (let i = 1; i <= 10; i++) {
+    let random = Math.floor((Math.random() * 200) + 20);
+
+    if(random % 2 === 0) {
+        console.log(`${random} is even`);
+    } else {
+        console.log(`${random} is odd`);
+    }
+}
+
+//For loop creates a pyramid from 1 to 9
 for (let i = 1; i < 10; i++) {
     let convert = String(i);
     console.log(convert);
@@ -63,3 +64,9 @@ for (let i = 1; i < 10; i++) {
         }
     }
 }
+
+//loop creates an output of 100 to 5 in increments of 5
+for(let i = 100; i > 1; i = i -5) {
+    console.log(i);
+}
+
