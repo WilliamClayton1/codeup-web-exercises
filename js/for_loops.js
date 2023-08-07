@@ -1,12 +1,11 @@
 // Loops any number in multiplication from 1-10
 // function showMultiplicationTable (x) {
 //     for (let i = 1; i <= 10; i++) {
-//         let answer = (x * i);
-//         console.log(`${x} x ${i} = ${answer}`);
+//         console.log(`${x} x ${i} = ${x * i}`);
 //     }
 // }
 //
-// showMultiplicationTable(9)
+// showMultiplicationTable(7)
 
 // Loops random number 10 times and determines if number is even or odd
 // for (let i = 1; i <= 10; i++) {
