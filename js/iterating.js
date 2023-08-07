@@ -63,7 +63,7 @@ names.forEach(function(element){
         return input[input.length - 1];
     }
 
-    console.log(firstElement(['hey', 'this', 'is the', 'last', 'element']));
-    console.log(secondElement(['hey', 'this', 'is the', 'last', 'element']));
+    console.log(firstElement(['hey', 'this', 'is the', 'first', 'element']));
+    console.log(secondElement(['hey', 'this', 'is the', 'second', 'element']));
     console.log(lastElement(['hey', 'this', 'is the', 'last', 'element']));
 })();
