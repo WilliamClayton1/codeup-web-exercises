@@ -34,9 +34,9 @@ let names = ['Will', 'Pat', 'Steve', 'Jim'];
      * TODO:
      * Refactor your above code to use a `forEach` loop
      */
-// names.forEach(function(element){
-//     console.log(element);
-// })
+names.forEach(function(element){
+    console.log(element);
+})
     /**
      * TODO:
      * Create the following three functions, each will accept an array and
@@ -60,7 +60,10 @@ let names = ['Will', 'Pat', 'Steve', 'Jim'];
     }
 
     function lastElement(input) {
-        return input[3];
+        return input[input.length - 1];
     }
 
+    console.log(firstElement(['hey', 'this', 'is the', 'last', 'element']));
+    console.log(secondElement(['hey', 'this', 'is the', 'last', 'element']));
+    console.log(lastElement(['hey', 'this', 'is the', 'last', 'element']));
 })();
