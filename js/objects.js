@@ -171,10 +171,15 @@ let books = [bookOne, bookTwo, bookThree, bookFour, bookFive];
 
     function createBook(titleName, authorName) {
        return {
-           title: titleName,
-           author: authorName
+            title: titleName,
+            author: authorName
         }
+
+       // for(let i = 0; i <= booksArray.length; i++) {
+       //     booksArray.push(book[i]);
+       // }
     }
+
 
     // function createBooksArray(input) {
     //     let array = [];
