@@ -82,44 +82,47 @@
      * > console.log(books[0].author.lastName) // "Adams"
      */
 
-    let books = [
-        {
-            title: 'Atomic Habits',
-            author: {
-                firstName: 'James',
-                lastName: 'Clear'
-            }
-        },
-        {
-            title: 'Ballad & Dagger',
-            author: {
-                firstName: 'Daniel',
-                lastName: 'Older'
-            }
-        },
-        {
-            title: 'Essentialism',
-            author: {
-                firstName: 'Greg',
-                lastName: 'McKeown'
-            }
-        },
-        {
-            title: 'Legendborn',
-            author: {
-                firstName: 'Tracy',
-                lastName: 'Deonn'
-            }
-        },
-        {
-           title: 'The Art of War',
-           author: {
-               firstName: 'Sun',
-               lastName: 'Tsu'
-           }
-        }
-    ];
+let bookOne = {
+    title: 'Atomic Habits',
+    author: {
+        firstName: 'James',
+        lastName: 'Clear'
+    }
+};
 
+let bookTwo = {
+    title: 'Ballad & Dagger',
+    author: {
+        firstName: 'Daniel',
+        lastName: 'Older'
+    }
+};
+
+let bookThree = {
+    title: 'Essentialism',
+    author: {
+        firstName: 'Greg',
+        lastName: 'McKeown'
+    }
+};
+
+let bookFour = {
+    title: 'Legendborn',
+    author: {
+        firstName: 'Tracy',
+        lastName: 'Deonn'
+    }
+};
+
+let bookFive = {
+    title: 'The Art of War',
+    author: {
+        firstName: 'Sun',
+        lastName: 'Tsu'
+    }
+}
+
+let books = [bookOne, bookTwo, bookThree, bookFour, bookFive];
 
     /**
      * TODO:
@@ -146,14 +149,11 @@
      *      ...
      */
 
-    // books.informationLog = function(i) {
-    //     console.log(`Title: ${this[i].title}`);
-    //     console.log(`Author: ${this[i].author.firstName} ${this[i].author.lastName}`);
-    // }
-    //
+
     // for (let i = 0; i < books.length; i++) {
     //     console.log(`Book # ${i + 1}`);
-    //     books.informationLog(i);
+    //     console.log(`Title: ${books[i].title}`);
+    //     console.log(`Author: ${books[i].author.firstName} ${books[i].author.lastName}`);
     //     console.log(`---`);
     // }
 
@@ -169,5 +169,28 @@
      *   `showBookInfo` function.
      */
 
+    function createBook(titleName, authorName) {
+       return {
+           title: titleName,
+           author: authorName
+        }
+    }
 
+    // function createBooksArray(input) {
+    //     let array = [];
+    //     for (let i = 0; i <= input; i++) {
+    //         array.push(i);
+    //     }
+    //     return array;
+    // }
+
+    // createBook().forEach(function (input) {
+    //     let array = [];
+    //     for (let i = 0; i <= input; i++) {
+    //         array.push(i);
+    //     }
+    //     return array;
+    // })
+
+    console.log(createBook('Life', 'Will'));
 })();
