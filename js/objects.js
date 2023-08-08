@@ -31,7 +31,7 @@
         return `Hello from ${person.firstName} ${person.lastName}`
     }
 
-    console.log(person.sayHello());
+    // console.log(person.sayHello());
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -47,26 +47,27 @@
      * and console.log the relevant messages for each person
      */
 
-    shoppers.applyDiscount = function (price, discount) {
-        let discounted = price * discount;
-        let total = price - discounted;
-        return `$${total.toFixed(2)}`;
-    }
 
-    for (let i = 0; i < shoppers.length; i++) {
-        if (shoppers.amount > 200) {
-            applyDiscount(shoppers[i].amount, .12);
-        }
-    }
-
-
-
-    let shoppers = [
-        {name: 'Cameron', amount: 180},
-        {name: 'Ryan', amount: 250},
-        {name: 'George', amount: 320}
-    ];
-
+    // let shoppers = [
+    //     {name: 'Cameron', amount: 180},
+    //     {name: 'Ryan', amount: 250},
+    //     {name: 'George', amount: 320}
+    // ];
+    //
+    // function applyDiscount (price, discount) {
+    //     let discounted = price * discount;
+    //     let total = price - discounted;
+    //     return `$${total.toFixed(2)}`;
+    // }
+    //
+    // shoppers.forEach(function(shoppers) {
+    //     let discount = shoppers.amount * .12
+    //     if (shoppers.amount > 200) {
+    //         console.log(`${shoppers.name} gets a 12% discount ($${discount.toFixed(2)}) for spending $${shoppers.amount} and will pay ${applyDiscount(shoppers.amount, .12)} instead.`);
+    //     } else {
+    //         console.log(`${shoppers.name} will not get the 12% discount for spending $${shoppers.amount}.`);
+    //             }
+    // });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -80,6 +81,45 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+
+    let books = [
+        {
+            title: 'Atomic Habits',
+            author: {
+                firstName: 'James',
+                lastName: 'Clear'
+            }
+        },
+        {
+            title: 'Ballad & Dagger',
+            author: {
+                firstName: 'Daniel',
+                lastName: 'Older'
+            }
+        },
+        {
+            title: 'Essentialism',
+            author: {
+                firstName: 'Greg',
+                lastName: 'McKeown'
+            }
+        },
+        {
+            title: 'Legendborn',
+            author: {
+                firstName: 'Tracy',
+                lastName: 'Deonn'
+            }
+        },
+        {
+           title: 'The Art of War',
+           author: {
+               firstName: 'Sun',
+               lastName: 'Tsu'
+           }
+        }
+    ];
+
 
     /**
      * TODO:
@@ -106,6 +146,18 @@
      *      ...
      */
 
+    // books.informationLog = function(i) {
+    //     console.log(`Title: ${this[i].title}`);
+    //     console.log(`Author: ${this[i].author.firstName} ${this[i].author.lastName}`);
+    // }
+    //
+    // for (let i = 0; i < books.length; i++) {
+    //     console.log(`Book # ${i + 1}`);
+    //     books.informationLog(i);
+    //     console.log(`---`);
+    // }
+
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -116,5 +168,6 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
 
 })();
