@@ -25,9 +25,17 @@
     console.log(newPlanetsString);
 
     /** BONUS:
-     * Create another string that would display your planets in an undordered
+     * Create another string that would display your planets in an unordered
      * list. You will need an opening AND closing <ul> tags around the entire
      * string, and <li> tags around each planet.
      */
+
+    let newList = newPlanetsString.split('<br>');
+
+    newList = newList.map((i) => {
+        return '<li>' + i + '</li>';
+    })
+    let unorderedList = '<ul>' + newList.join('') + '</ul>';
+    console.log(unorderedList);
 
 })();
