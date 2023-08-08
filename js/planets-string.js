@@ -38,4 +38,14 @@
     let unorderedList = '<ul>' + newList.join('') + '</ul>';
     console.log(unorderedList);
 
+    // let planetListHTML = '<ul>'
+    //
+    // for (let i = 0; i < planetsArray.length; i++) {
+    //     planetListHTML += `<li>${planetsArray[i]}</li>`
+    // }
+    //
+    // planetListHTML += '</ul>'
+    //
+    // console.log(planetListHTML);
+
 })();
