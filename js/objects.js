@@ -1,5 +1,4 @@
-(function() {
-    "use strict";
+"use strict";
 
     /**
      * TODO:
@@ -28,10 +27,10 @@
      */
 
     person.sayHello = function() {
-        return `Hello from ${person.firstName} ${person.lastName}`
+        return `Hello from ${this.firstName} ${this.lastName}`
     }
 
-    // console.log(person.sayHello());
+    console.log(person.sayHello());
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -48,26 +47,26 @@
      */
 
 
-    // let shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
-    //
-    // function applyDiscount (price, discount) {
-    //     let discounted = price * discount;
-    //     let total = price - discounted;
-    //     return `$${total.toFixed(2)}`;
-    // }
-    //
-    // shoppers.forEach(function(shoppers) {
-    //     let discount = shoppers.amount * .12
-    //     if (shoppers.amount > 200) {
-    //         console.log(`${shoppers.name} gets a 12% discount ($${discount.toFixed(2)}) for spending $${shoppers.amount} and will pay ${applyDiscount(shoppers.amount, .12)} instead.`);
-    //     } else {
-    //         console.log(`${shoppers.name} will not get the 12% discount for spending $${shoppers.amount}.`);
-    //             }
-    // });
+    let shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+    function applyDiscount (price, discount) {
+        let discounted = price * discount;
+        let total = price - discounted;
+        return `$${total.toFixed(2)}`;
+    }
+
+    shoppers.forEach(function(shoppers) {
+        let discount = shoppers.amount * .12
+        if (shoppers.amount > 200) {
+            console.log(`${shoppers.name} gets a 12% discount ($${discount.toFixed(2)}) for spending $${shoppers.amount} and will pay ${applyDiscount(shoppers.amount, .12)} instead.`);
+        } else {
+            console.log(`${shoppers.name} will not get the 12% discount for spending $${shoppers.amount}.`);
+                }
+    });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -150,12 +149,12 @@ let books = [bookOne, bookTwo, bookThree, bookFour, bookFive];
      */
 
 
-    // for (let i = 0; i < books.length; i++) {
-    //     console.log(`Book # ${i + 1}`);
-    //     console.log(`Title: ${books[i].title}`);
-    //     console.log(`Author: ${books[i].author.firstName} ${books[i].author.lastName}`);
-    //     console.log(`---`);
-    // }
+    for (let i = 0; i < books.length; i++) {
+        console.log(`Book # ${i + 1}`);
+        console.log(`Title: ${books[i].title}`);
+        console.log(`Author: ${books[i].author.firstName} ${books[i].author.lastName}`);
+        console.log(`---`);
+    }
 
 
     /**
@@ -169,33 +168,26 @@ let books = [bookOne, bookTwo, bookThree, bookFour, bookFive];
      *   `showBookInfo` function.
      */
 
-    function createBook(titleName, authorName) {
-       return {
+    function createBook(titleName, authorFirstName, authorLastName) {
+        return {
             title: titleName,
-            author: authorName
-        }
-
-       // for(let i = 0; i <= booksArray.length; i++) {
-       //     booksArray.push(book[i]);
-       // }
+            author: {
+                firstName: authorFirstName,
+                lastName: authorLastName
+            }
+        };
     }
 
+    let booksArray = [];
 
-    // function createBooksArray(input) {
-    //     let array = [];
-    //     for (let i = 0; i <= input; i++) {
-    //         array.push(i);
-    //     }
-    //     return array;
-    // }
+    booksArray.push(createBook('Life', 'John', 'Doe'));
+    booksArray.push(createBook('Still', 'John', 'Doe'));
+    booksArray.push(createBook('Need', 'John', 'Doe'));
+    booksArray.push(createBook('Have', 'John', 'Doe'));
 
-    // createBook().forEach(function (input) {
-    //     let array = [];
-    //     for (let i = 0; i <= input; i++) {
-    //         array.push(i);
-    //     }
-    //     return array;
-    // })
-
-    console.log(createBook('Life', 'Will'));
-})();
+    for (let i = 0; i < booksArray.length; i++) {
+        console.log(`Book # ${i + 1}`);
+        console.log(`Title: ${booksArray[i].title}`);
+        console.log(`Author: ${booksArray[i].author.firstName} ${booksArray[i].author.lastName}`);
+        console.log(`---`);
+}
