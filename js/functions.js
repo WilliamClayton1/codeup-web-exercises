@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 /**
  * TODO:
@@ -9,9 +9,9 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 
-function sayHello(name) {
-    return `Hello, ${name}!`;
-}
+// function sayHello(name) {
+//     return `Hello, ${name}!`;
+// }
 
 /**
  * TODO:
@@ -20,10 +20,10 @@ function sayHello(name) {
  *
  * console.log 'helloMessage' to check your work
  */
-
-let helloMessage = sayHello("Will");
-
-console.log(helloMessage);
+//
+// let helloMessage = sayHello("Will");
+//
+// console.log(helloMessage);
 /**
  * TODO:
  * Store your name as a string in a variable named 'myName', and pass that
@@ -31,13 +31,13 @@ console.log(helloMessage);
  * console.
  */
 //
-let myName = "Will";
-
-console.log(sayHello(myName));
-
-// Don't modify the following line, it generates a random number between 1 and 3
-// and stores it in a variable named random
-let random = Math.floor((Math.random() * 3) + 1);
+// let myName = "Will";
+//
+// console.log(sayHello(myName));
+//
+// // Don't modify the following line, it generates a random number between 1 and 3
+// // and stores it in a variable named random
+// let random = Math.floor((Math.random() * 3) + 1);
 
 /**
  * TODO:
@@ -57,11 +57,11 @@ let random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 
-function isTwo(x) {
-    return x === 2;
-}
-
-console.log(isTwo(random));
+// function isTwo(x) {
+//     return x === 2;
+// }
+//
+// console.log(isTwo(random));
 /**
  * TODO:
  * Create a function named 'calculateTip' to calculate a tip on a bill at a
@@ -73,10 +73,10 @@ console.log(isTwo(random));
  * > calculateTip(0.25, 25.50) // returns 6.375
  * > calculateTip(0.15, 33.42) // returns 5.013
  */
-
-function calculateTip(tip, price) {
-    return tip * price;
-}
+//
+// function calculateTip(tip, price) {
+//     return tip * price;
+// }
 
 /**
  * TODO:
@@ -85,13 +85,13 @@ function calculateTip(tip, price) {
  * then display the dollar amount they should tip
  */
 
-let userPrice = prompt("What is your total price of your bill?");
-
-let userTip = prompt("What percent would you like to tip?");
-
-let calculatedPrice = calculateTip((parseFloat(userTip)/100), parseFloat(userPrice));
-
-alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
+// let userPrice = prompt("What is your total price of your bill?");
+//
+// let userTip = prompt("What percent would you like to tip?");
+//
+// let calculatedPrice = calculateTip((parseFloat(userTip)/100), parseFloat(userPrice));
+//
+// alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
 
 /**
  * TODO:
@@ -108,12 +108,31 @@ alert(` Your tip will come out to $${calculatedPrice.toFixed(2)}`);
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
 
-let discountPercentRandom = Math.random().toFixed(2);
+// let discountPercentRandom = Math.random().toFixed(2);
+//
+// function applyDiscount(price, discount) {
+//     let discounted = price * discount;
+//     let total = price - discounted;
+//     return `$${total.toFixed(2)}`;
+// }
+//
+// console.log(applyDiscount(100, discountPercentRandom));
 
-function applyDiscount(price, discount) {
-    let discounted = price * discount;
-    let total = price - discounted;
-    return `$${total.toFixed(2)}`;
+function person(name, born) {
+    console.log("Name   : " + name);
+    console.log("Born in: " + born);
 }
 
-console.log(applyDiscount(100, discountPercentRandom));
+console.log("Famous people in computing:");
+console.log("");
+person("Charles Babbage", 1815);
+person("Ada Lovelace", 1815);
+person("George Boole", 1815);
+person("Grace Hopper", 1906);
+person("Alan Turing", 1912);
+person("Douglas Engelbart", 1925);
+person("Bill Gates", 1955);
+person("Steve Jobs", 1955);
+person("Linus Torvalds", 1969);
+person("Tim Berners-Lee", 1955);
+console.log("And many more...");
