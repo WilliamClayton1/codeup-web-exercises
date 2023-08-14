@@ -5,22 +5,23 @@
     <title>Register With Us</title>
 </head>
 <body>
-    <form method="POST" action="https://request-inspector.glitch.me/">
+
+  <form method="POST" action="https://request-inspector.glitch.me/">
 
     <label>Username:
-      <input name="username" type="text" placeholder="Enter Username">
+      <input name="email" type="text" placeholder="Enter Email Here" required>
     </label>
 
     <br><br>
 
     <label>Password:
-      <input name="password" type="password" placeholder="Enter Password">
+      <input name="password" type="password" placeholder="Enter Password Here" required>
     </label>
 
     <br><br>
 
-    <label>Bio
-      <textarea name="bio" placeholder="Tell us a little bit about you" maxlength="300"></textarea>
+    <label>Tell us a little bit about you:<br>
+      <textarea name="bio" placeholder="Optional" maxlength="300"></textarea>
     </label>
 
     <br><br>
@@ -46,9 +47,9 @@
     <label>Which Operating System are you using?
       <select name="web_browser" required>
         <option value=""></option>
-        <option value="windows">Windows</option>
-        <option value="macOS">MacOS</option>
-        <option value="linux">Linux</option>
+        <option value="chrome">Chrome</option>
+        <option value="firefox">Firefox</option>
+        <option value="safari">Safari</option>
       </select>
     </label>
 
