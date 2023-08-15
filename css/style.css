@@ -1,4 +1,9 @@
 .fancy-header {
-    color: purple;
     text-decoration: underline;
+    text-align: center;
+}
+
+.other-header {
+    text-decoration: underline;
+    text-align: center;
 }
