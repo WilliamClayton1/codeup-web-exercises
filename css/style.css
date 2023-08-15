@@ -1,9 +1,22 @@
 .fancy-header {
+    color: blue;
     text-decoration: underline;
     text-align: center;
 }
 
 .other-header {
+    color: darkblue;
     text-decoration: underline;
     text-align: center;
+}
+
+body {
+    background-color: lightblue;
+    background-image: url("https://images.pexels.com/photos/4077937/pexels-photo-4077937.jpeg");
+    background-size: contain;
+}
+
+.background {
+    background-color: black;
+    background-size: inherit;
 }
