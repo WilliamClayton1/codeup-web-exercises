@@ -12,11 +12,10 @@
 
 body {
     background-color: lightblue;
-    background-image: url("https://images.pexels.com/photos/4077937/pexels-photo-4077937.jpeg");
-    background-size: contain;
 }
 
-.background {
-    background-color: black;
-    background-size: inherit;
+div#mainBackground {
+    background-image: url("https://images.pexels.com/photos/13156079/pexels-photo-13156079.jpeg");
+    background-size: contain;
+    background-repeat: space;
 }
