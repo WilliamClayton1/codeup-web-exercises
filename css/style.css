@@ -8,14 +8,59 @@
     color: darkblue;
     text-decoration: underline;
     text-align: center;
+    font-family: sans-serif;
 }
 
 body {
     background-color: lightblue;
+    font-family: cursive;
 }
 
 div#mainBackground {
     background-image: url("https://images.pexels.com/photos/13156079/pexels-photo-13156079.jpeg");
-    background-size: contain;
+    background-size: auto auto;
     background-repeat: space;
+}
+
+div#footerBackground {
+    background-color: black;
+    color: white;
+}
+
+.fancy {
+    text-align: center;
+    text-decoration: underline;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: aqua;
+}
+
+.newStyle {
+    list-style-type: armenian;
+    color: chartreuse;
+    font-family: bold, serif;
+    margin-left: 45%;
+}
+
+table, th, td {
+    border: 1px solid;
+    width: 30%;
+    padding: 5px;
+}
+
+table {
+    margin-left: 35%;
+}
+
+footer {
+    text-align: center;
+}
+
+p {
+    text-align: center;
 }
