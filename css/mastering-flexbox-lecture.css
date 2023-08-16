@@ -1,0 +1,13 @@
+@import "mastering-flexbox-base.css";
+
+/* This is the file we will use to experiment with flexbox */
+.container {
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    /**justify-content is main access*/
+    justify-content: center;
+    /**align-item is cross access*/
+    align-items: center;
+    gap: 30px;
+}
