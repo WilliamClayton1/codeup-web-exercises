@@ -10,11 +10,11 @@
 </head>
 <body>
 	<div class="page-wrapper">
-		<header class="container py-20">
+		<header class="container py-20 my-20">
 			<div class="row justify-content-between">
-				<div class="column flex-shrink logo-wrapper">
+				<a href="/" class="column flex-shrink logo-wrapper">
 					<img src="images/fylo-logo.svg" alt="Fylo Logo" class="logo d-flex">
-				</div>
+				</a>
 				<nav class="column flex-shrink justify-content-center">
 					<ul class="d-flex align-items-center justify-content-between gap-20">
 						<li>
@@ -30,7 +30,23 @@
 				</nav>
 			</div>
 		</header>
+		<main class="container hero">
+			<div class="row">
+				<img src="images/illustration-1.svg" alt="Fylo picture" class="image1 column">
+				<section class="column justify-content-center align-items-start">
+					<h1>All your files in one secure location, accessible anywhere.</h1>
+					<p>Fylo stores your most important files in one secure location. Access them wherever you need, share and collaborate with friends, family, and co-workers.</p>
+					<div class="d-flex justify-content-center align-items-center">
+						<form id="newsletter" class="newsletter d-flex">
+							<label>
+								<input type="email" placeholder="Enter your email..." id="email" name="email" required>
+							</label>
+							<button type="submit" class="single-submit">Get Started</button>
+						</form>
+					</div>
+				</section>
+			</div>
+		</main>
 	</div>
-
 </body>
 </html>

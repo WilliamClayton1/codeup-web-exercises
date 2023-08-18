@@ -1,4 +1,4 @@
-@import "resets.css";
+@import "../css-presets/resets.css";
 
 :root {
   --clr-dark: #0f172a;

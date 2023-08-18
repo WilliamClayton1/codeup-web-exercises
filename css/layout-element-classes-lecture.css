@@ -1,6 +1,12 @@
-@import "resets.css";
-@import "layout.css";
+@import "../css-presets/resets.css";
+@import "../css-presets/layout.css";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+:root {
+    --clr-dark: #07043B;
+    --clr-primary: #575988;
+    --clr-secondary: #2F65F8;
+}
 body {
     font-family: 'Raleway', sans-serif;
     color: #07043B;
@@ -14,4 +20,63 @@ body {
 .logo.d-flex {
     width: 166px;
     height: 49px;
+}
+.image1 {
+    width: 640px;
+    height: 474px;
+}
+section.column {
+    order: -1;
+    gap: 15px
+}
+div.page-wrapper {
+    gap: 86px;
+}
+h1 {
+    font-size: 40px;
+    line-height: 60px;
+}
+p{
+    font-size: 17px;
+    line-height: 24px;
+    font-family: 'Open Sans', sans-serif;
+}
+input {
+    width: 320px;
+    height: 45px;
+    padding-left: 21px;
+    letter-spacing: 0.467px;
+}
+button.single-submit {
+    width: 200px;
+    height: 45px;
+}
+
+button {
+    background-color: #2F65F8;
+    color: #fff;
+    filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.16));
+    border: none;
+    border-radius: 3px;
+}
+
+form {
+    gap: 25px;
+}
+img.image2 {
+    width: 542px;
+    height: 409px;
+}
+.arrow {
+    width: 12px;
+    height: 12px;
+}
+div.link-center {
+    font-family: 'Open Sans', sans-serif;
+}
+a:hover {
+    var(--clr-primary);
+}
+input::placeholder {
+    color: #c2c2c2
 }
