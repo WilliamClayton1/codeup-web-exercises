@@ -14,6 +14,7 @@
 body {
     background-color: lightblue;
     font-family: cursive;
+    position: relative
 }
 
 div#mainBackground {
@@ -75,4 +76,5 @@ th {
 }
 .imageOne {
     position: absolute;
+    left: 20px;
 }

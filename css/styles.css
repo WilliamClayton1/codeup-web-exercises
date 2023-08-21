@@ -4,6 +4,8 @@ body {
 }
 .page-wrapper {
     background-color: #D9D9D9;
+    position: relative;
+    gap: 60px;
 }
 .container.login {
     background-color: #FFFFFF;
@@ -11,7 +13,8 @@ body {
     padding: 45px 25px;
     width: calc(100% - 40px);
     max-width: 530px;
-    box-shadow: 0px 0px 104px -40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 104px -40px rgba(0, 0, 0, 0.25);
+    position: relative;
 }
 
 .container.login h1 {
@@ -22,12 +25,13 @@ body {
 input {
     min-height: 55px;
     border: 1px solid #DDDFE1;
-    padding: 0px 10px;
+    padding: 0 10px;
     font-family: inherit;
     font-size: 15px;
+
 }
 
-input:placeholder {
+input::placeholder {
     color: #ABAFB3;
 }
 
@@ -72,5 +76,44 @@ button.btn.btn-login {
     flex: 0 1 auto;
     min-width: 250px;
 }
-
-
+.imageOne {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.imageTwo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+.imageThree {
+    position: absolute;
+    left: 100px;
+    bottom: 450px;
+}
+.imageFour{
+    position: absolute;
+    top: 15px;
+    right: 80px;
+}
+.imageFive {
+    padding: 10px;
+    border-radius: 999px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    background-color: white;
+    filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.16));
+}
+.imageSix{
+    position: absolute;
+    left: 15px;
+    top: 100px;
+}
+.imageSeven {
+    position: absolute;
+    right: 0;
+    bottom: 450px;
+}
