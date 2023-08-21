@@ -80,7 +80,7 @@ section:nth-of-type(3) {
 }
 
 section:nth-of-type(3) h3 {
-
+    flex: 1;
 }
 
 .orange-circle {
@@ -93,9 +93,8 @@ section:nth-of-type(3) h3 {
 
 .large-brown-box {
     height: 5em;
-    width: 5em;
+    width: 7em;
     background: brown;
-    /* enter needed declarations here */
 }
 
 .large-brown-box:nth-of-type(2) {
@@ -103,7 +102,8 @@ section:nth-of-type(3) h3 {
 }
 
 section:nth-of-type(5) {
-    /* enter needed declarations here */
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .yellow-box {
@@ -115,7 +115,10 @@ section:nth-of-type(5) {
 section:nth-of-type(6) {
     background: coral;
     height: 14em;
-    /* enter needed declarations here */
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .grey-box {
