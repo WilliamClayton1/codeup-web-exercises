@@ -102,8 +102,8 @@ button.btn.btn-login {
     padding: 10px;
     border-radius: 999px;
     position: absolute;
-    right: -15px;
-    top: -15px;
+    right: -10px;
+    top: -10px;
     background-color: white;
     filter: drop-shadow(2px 3px 6px rgba(0, 0, 0, 0.16));
 }
@@ -114,6 +114,6 @@ button.btn.btn-login {
 }
 .imageSeven {
     position: absolute;
-    right: 0;
+    right: 10px;
     bottom: 450px;
 }
