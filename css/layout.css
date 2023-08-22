@@ -32,11 +32,15 @@
     display: flex;
     width: 100%;
     max-width: 1100px;
+    padding: 0 20px;
+    order: 0;
 }
 .row.full-width {
     max-width: unset;
 }
-
+.row.no-padding {
+    padding: unset;
+}
 /*
     The "column" is a container element that vertically separates its
     children, which are usually content elements. When paired with sibling columns,

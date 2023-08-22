@@ -18,12 +18,10 @@ body {
     min-height: 60vh;
 }
 .logo.d-flex {
-    width: 166px;
-    height: 49px;
+    max-width: 166px;
 }
 .image1 {
-    width: 640px;
-    height: 474px;
+    max-width: 640px;
 }
 section.column {
     order: -1;
@@ -42,14 +40,14 @@ p{
     font-family: 'Open Sans', sans-serif;
 }
 input {
-    width: 320px;
-    height: 45px;
+    min-width: 320px;
+    min-height: 45px;
     padding-left: 21px;
     letter-spacing: 0.467px;
 }
 button.single-submit {
-    width: 200px;
-    height: 45px;
+    min-width: 200px;
+    min-height: 45px;
 }
 
 button {
@@ -64,12 +62,10 @@ form {
     gap: 25px;
 }
 img.image2 {
-    width: 542px;
-    height: 409px;
+    max-width: 542px;
 }
 .arrow {
-    width: 12px;
-    height: 12px;
+    max-width: 12px;
 }
 div.link-center {
     font-family: 'Open Sans', sans-serif;
@@ -80,3 +76,19 @@ a:hover {
 input::placeholder {
     color: #c2c2c2
 }
+@media screen and (max-width: 900px) {
+    .hero .row {
+        flex-direction: column;
+    }
+    .hero .column.hero-image-column {
+        order: -1;
+    }
+    .hero .column:has(img.hero-img) {
+        order: -1;
+    }
+}
+@media print {
+    .hero-img {}
+    display: none;
+}
+
