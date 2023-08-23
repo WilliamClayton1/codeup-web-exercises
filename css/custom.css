@@ -1,0 +1,14 @@
+.hero {
+    background-image: url("/images/pizza.png");
+    height: 346px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+.overlay {
+    width: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    opacity: 75%;
+}
