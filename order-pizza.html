@@ -66,53 +66,94 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-					<table>
+					<table class="table-bordered table-light rounded-2">
 						<thead class="table-color">
-						<tr>
-							<th scope="col">Choose Size and Crust</th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-							<th scope="col"></th>
-						</tr>
+							<tr>
+								<th scope="col">Choose Size and Crust</th>
+							</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<th scope="row">
-								<table class="table">
-									<thead class="table-light">
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">First</th>
-										<th scope="col">Last</th>
-										<th scope="col">Handle</th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td colspan="2">Larry the Bird</td>
-										<td>@twitter</td>
-									</tr>
-									</tbody>
-								</table>
-							</th>
-						</tr>
-						<tr>
-							<th scope="row"></th>
-							<td></td>
-							<td></td>
+							<tr>
+								<th scope="row">
+									<div class="pizzaTable">
+										<div>
+											<table class="table-bordered table-light">
+												<thead>
+												<tr class="change">
+													<th scope="col">Hand Tossed</th>
+												</tr>
+												</thead>
+												<tr>
+													<td>Garlic seasoned crust with a rich, buttery taste.</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="crust-size">
+															<label>
+																<input class="crust-size-input" type="radio" name="crustTossed">
+															</label>
+															<label class="crust-size-label">
+																Small (10")
+															</label>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="crust-size">
+															<label>
+																<input class="crust-size-input" type="radio" name="crustTossed">
+															</label>
+															<label class="crust-size-label">
+																Medium (12")
+															</label>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<div class="tableTwo">
+											<table class="table-bordered table-light">
+												<thead>
+												<tr class="change">
+													<th scope="col">Crispy Thin</th>
+												</tr>
+												</thead>
+												<tbody>
+												<tr>
+													<td>Thin enough for optimum crispy to crunchy ratio.</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="crust-size">
+															<label>
+																<input class="crust-size-input" type="radio" name="crustTossed">
+															</label>
+															<label class="crust-size-label">
+																Medium (12")
+															</label>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<div class="crust-size">
+															<label>
+																<input class="crust-size-input" type="radio" name="crustTossed">
+															</label>
+															<label class="crust-size-label">
+																Large (14")
+															</label>
+														</div>
+													</td>
+												</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</th>
+							</tr>
+						<tr class="text-end change">
 							<td><button type="button" class="btn btn-primary">Next Step ></button></td>
 						</tr>
 					</table>

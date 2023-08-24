@@ -1,5 +1,6 @@
 :root {
     --new-color: #0d6efd;
+    --light-color: #f8f8f8;
 }
 
 .hero {
@@ -24,3 +25,13 @@ th,td {
     padding: 10px;
     width: 100%;
 }
+
+.change {
+    background-color: var(--light-color);
+}
+.pizzaTable {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
