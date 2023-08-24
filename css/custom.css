@@ -14,24 +14,9 @@
 main.container {
     padding-top: 30px;
 }
-.table-color {
-    background-color: var(--new-color);
-    color: #FFFFFF;
-}
-table {
-    width: 100%;
-}
-th,td {
-    padding: 10px;
-    width: 100%;
-}
-
-.change {
-    background-color: var(--light-color);
-}
-.pizzaTable {
+div.cards {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 
