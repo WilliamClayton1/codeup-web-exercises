@@ -13,6 +13,7 @@ body {
   color: #333;
   background-color: #fff;
   min-height: 100vh;
+  max-width: 1440px;
 }
 
 ul {
@@ -21,4 +22,8 @@ ul {
 
 a {
   text-decoration: unset;
+}
+hr {
+  opacity: unset;
+  border: unset;
 }
