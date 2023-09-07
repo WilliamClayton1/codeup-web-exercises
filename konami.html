@@ -5,6 +5,26 @@
 	<title>Cheat Code</title>
 </head>
 <style>
+	#icon-card-container{
+		height: 2em;
+		width: 8em;
+		flex-wrap: wrap;
+		margin-bottom: 4em;
+	}
+
+	.flex {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.icon-card {
+		margin: .5em;
+		padding: .5em;
+		border: 2px solid black;
+		width: 1em;
+		height: 1em;
+		text-align: center;
+	}
 	button:hover {
 		transform: scale(1.3);
 		box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -13,21 +33,47 @@
 	}
 </style>
 <body style="display: flex; flex-direction: column; justify-content: center">
-	<h1 style="align-self: center; width: 325px">Welcome to my Game!</h1>
-	<div class="display" style="height: 50px; text-align: center"></div>
-	<div class="input" style="height: 50px; text-align: center"></div>
-	<button id="refresh" style="align-self: center; border: unset; height: 30px; width: 100px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease-in-out;">Reset</button>
+	<h1 style="text-align: center; align-self: center; width: 325px">KONAMI CODE</h1>
+	<h3 style="align-self: center">Type in the cheat code to gain 30 lives.</h3>
+	<div class="display" style="height: 50px; text-align: center" hidden="hidden"></div>
+	<div class="input" style="height: 50px; text-align: center; display: none"></div>
+	<div id="outerCard" style="width: 1696px; display: flex; justify-content: center; flex-wrap: wrap; height: 100px">
+		<div id="icon-card-container" class="flex" style="align-self: center; width: 50px; margin: 0"></div>
+	</div>
+
+	<button id="refresh" style="align-self: center; border: unset; height: 30px; width: 100px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease-in-out; margin-top: 20px">Reset</button>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script>
 		let cheatCode = "3838404037393739666513";
 		let displayUser = "";
 		let userInput = "";
+		let renderArray = [];
+		let htmlRender = "";
 
 		$("body").on('keyup', (e) => {
 			displayUser += e.originalEvent.keyCode
-
 			userInput += e.originalEvent.key;
+
+			renderArray.push(e.originalEvent.key);
+			htmlRender = "";
+			for (let i = 0; i < renderArray.length; i++) {
+				if(renderArray[i].toLowerCase() === "enter"){
+					htmlRender += `<div class="icon-card flex">&#9166</div>`
+				} else if (renderArray[i].toLowerCase() === "arrowup") {
+					htmlRender += `<div class="icon-card flex">&#8593</div>`
+				} else if (renderArray[i].toLowerCase() === "arrowdown") {
+					htmlRender += `<div class="icon-card flex">&#8595</div>`
+				} else if (renderArray[i].toLowerCase() === "arrowright") {
+					htmlRender += `<div class="icon-card flex">&#8594</div>`
+				} else if (renderArray[i].toLowerCase() === "arrowleft") {
+					htmlRender += `<div class="icon-card flex">&#8592</div>`
+				} else {
+					htmlRender += `<div class="icon-card flex">${renderArray[i].toUpperCase()}</div>`
+				}
+			}
+
+			$("#outerCard").html(htmlRender);
 
 			if (displayUser === cheatCode) {
 				alert(`You have added 30 lives!`);
