@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<style>
+	.invisible {
+		visibility: hidden;
+	}
+	h2 {
+		text-decoration: underline;
+	}
+	.highlight {
+		background: yellow;
+	}
+</style>
+<body>
+	<h2>National Park Facts</h2>
+	<dl>
+		<dt>National Park Service</dt>
+		<dd class="invisible">protects over 84 million acres of wild landscapes and historic sites.</dd>
+
+		<dt>Yellowstone National Park</dt>
+		<dd class="invisible">the oldest U.S. national park, founded in 1872.</dd>
+
+		<dt>Mackinac National Park</dt>
+		<dd class="invisible">established in 1875 and was returned to the state in 1895. It is now one of Michigan's State Parks. </dd>
+
+		<dt>Ribbon Falls</dt>
+		<dd class="invisible">nine times taller than Niagara Falls.</dd>
+
+		<dt>Death Valley National Park</dt>
+		<dd class="invisible">One of the hottest temperatures on earth was recorded in 1913, registering 134 degrees.</dd>
+
+		<dt>Grand Canyon National Park</dt>
+		<dd class="invisible">The Grand Canyon is known as one of the Seven Natural Wonders of the World.</dd>
+
+		<dt>Denali National Park</dt>
+		<dd class="invisible">Mount McKinley in the Alaska Range is the highest point in the national parks at 20,302 feet.</dd>
+
+		<dt>California's Sequoia National Park</dt>
+		<dd class="invisible">home to the largest living single-stem tree in the world, the wonderfully named General Sherman. The tree is approximately 275 feet tall and weighs approximately 1,900 metric tons.</dd>
+
+		<dt>Wrangell-St. Elias National Park</dt>
+		<dd class="invisible">the largest national park, covering 13,000 square miles or 13.2 million acres.</dd>
+
+		<dt>Great Smoky Mountains National Park</dt>
+		<dd class="invisible">the most visited national park with more than 9 million guests per year, followed by Grand Canyon National Park, which gets more than 4 million visits per year.</dd>
+	</dl>
+
+
+	<h3>Yellowstone National Park</h3>
+	<ul>
+		<li>Encompasses 3,472 square miles (2,221,766 acres) which makes it larger than Rhode Island and Delaware combined</li>
+		<li>There are more than 10,000 hydrothermal features in Yellowstone. The four types of thermal features are geysers, hot springs, mud pots, and fumaroles</li>
+		<li>Home to more than 500 active geysers (more than half the world’s geysers)</li>
+		<li>Has 131.7 sq. miles of surface area and 141 miles of shoreline. It is the largest high elevation lake in North America.</li>
+	</ul>
+
+	<h3>Mackinac National Park</h3>
+	<ul>
+		<li>Was under the jurisdiction of the War Department rather than the Interior Department.</li>
+		<li>Occupied only about a thousand acres of Mackinac Island</li>
+		<li>Located at the westernmost point of Lake Huron and the site of Fort Mackinac</li>
+		<li>The State of Michigan was persuaded to operate Mackinac as a state park</li>
+	</ul>
+
+	<h3>Death Valley National Park</h3>
+	<ul>
+		<li>Was inhabited by Native Americans</li>
+		<li>Got its name from a group of lost gold miners</li>
+		<li>Featured its own television series</li>
+		<li>Is the lowest point in america</li>
+	</ul>
+	<button id="highlighted">Highlight</button>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+			let $elementSelectors = $(".invisible");
+			$("dt").click(function(e) {
+				e.preventDefault();
+				$elementSelectors.toggleClass('invisible')
+			})
+			$("#highlighted").click('click', () => {
+				$('ul').each( (index, element) => {
+					$(element).children().last().toggleClass('highlight')
+				})
+			})
+
+			$('h3').on('click', (e) => {
+				$(e.target).next().css('font-weight', 'bold')
+			})
+
+			$('li').on('click', (e) => {
+				$(e.target).parent().children().first().css('color', 'blue')
+			})
+		})
+	</script>
+</body>
+</html>
