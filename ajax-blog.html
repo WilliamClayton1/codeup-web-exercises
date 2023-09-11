@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX Blog</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="page-wrapper vh-100">
+	<div class="container">
+		<main class="row">
+			<div id="posts" class="column d-flex flex-column gap-5">
+
+			</div>
+		</main>
+	</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function () {
+		$.ajax('./data/blog.json').done((data) => {
+			let displayPost = "";
+			for (let i = 0; i < data.length; i++) {
+				displayPost += `
+				<div class="card">
+				<div class="card-body">
+				<h2 class="card-title text-center">${data[i].title}</h2>
+				<p class="card-text">${data[i].content}</p>
+				<p><strong>Category:</strong> ${data[i].categories.join(', ')}</p>
+				<p><strong>Date Posted:</strong> ${data[i].date}</p>
+				</div>
+				</div>
+				`
+			}
+			$('#posts').html(displayPost)
+		}).fail((jqXhr, status, error) => {
+			console.log('OH NOOOO!!!');
+			console.log(status);
+			console.log(error);
+		});
+	});
+</script>
+</body>
+</html>

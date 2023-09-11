@@ -38,13 +38,13 @@
 				let displayProducts = "";
 				for (let i = 0; i < data.length; i++) {
 					displayProducts += `
-	        <tr>
-	            <td>${data[i].title}</td>
-	            <td>${data[i].quantity}</td>
-	            <td>${data[i].price}</td>
-	            <td>${data[i].categories.join(', ')}</td>
-	        </tr>
-			`
+			        <tr>
+			            <td>${data[i].title}</td>
+			            <td>${data[i].quantity}</td>
+			            <td>${data[i].price}</td>
+			            <td>${data[i].categories.join(', ')}</td>
+			        </tr>
+					`
 				}
 				$('#insertProducts').html(displayProducts);
 			}).fail((jqXhr, status, error) => {
