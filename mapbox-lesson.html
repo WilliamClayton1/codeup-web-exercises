@@ -26,11 +26,11 @@
 	let popup = new mapboxgl.Popup().setHTML("<p>Six Flags!</p>");
 	marker.setPopup(popup);
 
-	// geocode("600 Navarro St #350, San Antonio, TX 78205", MAPBOX_API_TOKEN).then(function(result) {
-	// 	console.log(result);
-	// 	map.setCenter(result);
-	// 	map.setZoom(17);
-	// });
+	geocode("600 Navarro St #350, San Antonio, TX 78205", MAPBOX_API_TOKEN).then(function(result) {
+		console.log(result);
+		map.setCenter(result);
+		map.setZoom(17);
+	});
 	//
 	// reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_API_TOKEN).then(function(results) {
 	// 	// logs the address for The Alamo

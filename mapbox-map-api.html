@@ -5,11 +5,27 @@
 	<title>Mapbox API</title>
 	<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+
+	<style>
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		img {
+			border: 1px solid black;
+		}
+		a{
+			color: black
+		}
+	</style>
+
 </head>
 <body>
 
 
-<div id='map' style='width: 100%; height: 700px;'></div>
+<div id='map' style='width: 100%; height: 900px;'></div>
 
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
@@ -24,10 +40,13 @@
 
 	let favoriteRestaurant = [{
 		address: "217 Marlton Ave, Camden, NJ 08105",
-		popupHTML: "<p>Old San Juan</p>"
+		popupHTML: "<div><h1>Old San Juan</h1> <p>They make amazing <a href='#' target='_blank'>hispanic food</a>.</p> <img src='images/restaurant1.jpeg' alt='old san juan image'></div>"
+
 	}, {
 		address: "1101 Filbert Street, Philadelphia, PA 19107",
 		popupHTML: "<p>Crown Fried Chicken</p>"
+
+
 	}, {
 		address: "7801 Maple Ave, Pennsauken Township, NJ 08109",
 		popupHTML: "<p>Crab Du Jour</p>"
@@ -43,7 +62,7 @@
 						.addTo(map)
 						.setPopup(popup);
 				map.setCenter(coordinates.address);
-				map.setZoom(12.5);
+				map.setZoom(12);
 			});
 		})
 	}
