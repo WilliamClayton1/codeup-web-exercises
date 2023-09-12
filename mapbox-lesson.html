@@ -42,24 +42,25 @@
 	// 	});
 	// });
 
-	// let alamoInfo = {
-	// 	address: "The Alamo, San Antonio",
-	// 	popupHTML: "<p>Remember the Alamo!</p>"
-	// };
-	//
-	// function placeMarkerAndPopup(info, token, map) {
-	// 	geocode(info.address, token).then(function(coordinates) {
-	// 		let popup = new mapboxgl.Popup()
-	// 				.setHTML(info.popupHTML);
-	// 		let marker = new mapboxgl.Marker()
-	// 				.setLngLat(coordinates)
-	// 				.addTo(map)
-	// 				.setPopup(popup);
-	// 		popup.addTo(map);
-	// 	});
-	// }
-	//
-	// placeMarkerAndPopup(alamoInfo, MAPBOX_API_TOKEN, map);
+	// Geocoding with a place maker
+	let alamoInfo = {
+		address: "The Alamo, San Antonio",
+		popupHTML: "<p>Remember the Alamo!</p>"
+	};
+
+	function placeMarkerAndPopup(info, token, map) {
+		geocode(info.address, token).then(function(coordinates) {
+			let popup = new mapboxgl.Popup()
+					.setHTML(info.popupHTML);
+			let marker = new mapboxgl.Marker()
+					.setLngLat(coordinates)
+					.addTo(map)
+					.setPopup(popup);
+			popup.addTo(map);
+		});
+	}
+
+	placeMarkerAndPopup(alamoInfo, MAPBOX_API_TOKEN, map);
 </script>
 </body>
 </html>
