@@ -1,2 +1,10 @@
 @import "resets.css";
 @import "layout.css";
+
+.header {
+    border: 1px solid black;
+}
+
+#search {
+    align-self: start;
+}
