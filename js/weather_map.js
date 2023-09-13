@@ -20,6 +20,7 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
     let windSpeed = data.wind.speed
     let pressure = data.main.pressure
 
+    //code populates weather data into HTML
     let html = `
     <div class="column">
     <div>${newDate}</div>
@@ -30,9 +31,5 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
     <div>Pressure: ${pressure}</div>
     </div>
 `
-
     $("#insert-weather").html(html);
-
-
-
 })
