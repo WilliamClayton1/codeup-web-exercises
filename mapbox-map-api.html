@@ -25,48 +25,64 @@
 <body>
 
 
-<div id='map' style='width: 100%; height: 900px;'></div>
+<div id='map' style='width: 100%; height: 700px;'></div>
+<div id="selection">
+	<form id="noRefresh">
+		<label for="zoom">Zoom</label>
+		<select name="Zoom Level" id="zoom">
+			<option value="zoomLevel">5</option>
+			<option value="zoomLevel">15</option>
+			<option value="zoomLevel">20</option>
+		</select>
+		<button id="submit-btn">Submit</button>
+	</form>
+</div>
 
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
 <script>
-	mapboxgl.accessToken = MAPBOX_API_TOKEN;
-	const map = new mapboxgl.Map({
-		container: 'map', // container ID
-		style: 'mapbox://styles/mapbox/satellite-v9', // style URL
-		center: [-75.08889, 39.943075], // starting position [lng, lat]
-		zoom: 12, // starting zoom
-	});
+	$(document).ready(function () {
+		mapboxgl.accessToken = MAPBOX_API_TOKEN;
+		const map = new mapboxgl.Map({
+			container: 'map', // container ID
+			style: 'mapbox://styles/mapbox/satellite-v9', // style URL
+			center: [-75.08889, 39.943075], // starting position [lng, lat]
+			zoom: 12, // starting zoom
+		});
 
-	let favoriteRestaurant = [{
-		address: "217 Marlton Ave, Camden, NJ 08105",
-		popupHTML: "<div><h1>Old San Juan</h1> <p>They make amazing <a href='#' target='_blank'>hispanic food</a>.</p> <img src='images/restaurant1.jpeg' alt='old san juan image'></div>"
+		let favoriteRestaurant = [{
+			address: "217 Marlton Ave, Camden, NJ 08105",
+			popupHTML: "<div><h1>Old San Juan</h1> <p>They make amazing <a href='#' target='_blank'>hispanic food</a>.</p> <img src='images/restaurant1.jpeg' alt='old san juan image'></div>"
 
-	}, {
-		address: "1101 Filbert Street, Philadelphia, PA 19107",
-		popupHTML: "<p>Crown Fried Chicken</p>"
+		}, {
+			address: "1101 Filbert Street, Philadelphia, PA 19107",
+			popupHTML: "<div><h1>Crown Fried Chicken</h1> <p>They make amazing <a href='#' target='_blank'>wings</a>.</p> <img src='images/restaurant2.png' alt='crown fried chicken image'></div>"
 
 
-	}, {
-		address: "7801 Maple Ave, Pennsauken Township, NJ 08109",
-		popupHTML: "<p>Crab Du Jour</p>"
-	}];
+		}, {
+			address: "7801 Maple Ave, Pennsauken Township, NJ 08109",
+			popupHTML: "<div><h1>Crab Du Jour</h1> <p>They make amazing <a href='#' target='_blank'>seafood</a>.</p> <img src='images/restaurant3.png' alt='crab du jour image'></div>"
+		}];
 
-	function placeMarkerAndPopup(info, token, map) {
-		info.forEach(function(obj) {
-			geocode(obj.address, token).then(function(coordinates) {
-				let popup = new mapboxgl.Popup()
-						.setHTML(obj.popupHTML);
-				let marker = new mapboxgl.Marker()
-						.setLngLat(coordinates)
-						.addTo(map)
-						.setPopup(popup);
-				map.setCenter(coordinates.address);
-				map.setZoom(12);
-			});
-		})
-	}
-	placeMarkerAndPopup(favoriteRestaurant, MAPBOX_API_TOKEN, map);
+		function placeMarkerAndPopup(info, token, map) {
+			info.forEach(function(obj) {
+				geocode(obj.address, token).then(function(coordinates) {
+					let popup = new mapboxgl.Popup()
+							.setHTML(obj.popupHTML);
+					let marker = new mapboxgl.Marker()
+							.setLngLat(coordinates)
+							.addTo(map)
+							.setPopup(popup);
+					map.setCenter(coordinates.address);
+				});
+			})
+		}
+		placeMarkerAndPopup(favoriteRestaurant, MAPBOX_API_TOKEN, map);
+
+		let btn = document.querySelector('#submit-btn');
+
+
+	})
 </script>
 </body>
 </html>
