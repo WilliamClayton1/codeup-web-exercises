@@ -173,23 +173,41 @@ function analyzeWord(str){
 // capitalizeName('Nathan drake') // "Nathan Drake"
 
 function capitalizeName(str) {
-    let firstName = str.split(" ")[0];
-    let lastName = str.split(" ")[1];
+    if (str.includes(" ")) {
+        let firstName = str.split(" ")[0];
+        let lastName = str.split(" ")[1];
+        let firstNameSplit = firstName.split("");
+        let lastNameSplit = lastName.split("");
+        if (firstNameSplit[0] === firstNameSplit[0].toUpperCase() && (lastNameSplit[0] === lastNameSplit[0].toUpperCase())) {
+            return `${firstName + ' ' + lastName}`;
+        } else {
+            firstNameSplit[0] = firstNameSplit[0].toUpperCase();
 
-    let firstNameSplit = firstName.split("");
-    let lastNameSplit = lastName.split("");
+            lastNameSplit[0] = lastNameSplit[0].toUpperCase();
+            lastNameSplit[1] = lastNameSplit[1].toUpperCase()
 
-    if (firstNameSplit[0] === firstNameSplit[0].toUpperCase() && (lastNameSplit[0] === lastNameSplit[0].toUpperCase())) {
-        return `${firstName + ' ' + lastName}`;
+            firstName = firstNameSplit.join("");
+            lastName = lastNameSplit.join("");
+
+            return `${firstName + ' ' + lastName}`;
+        }
     } else {
-        firstNameSplit[0] = firstNameSplit[0].toUpperCase();
+        let firstName = str.split(",")[0];
+        let lastName = str.split(",")[1];
+        let firstNewSplit = firstName.split("");
+        let lastNewSplit = lastName.split("");
+        if (firstNewSplit[0] === firstNewSplit[0].toUpperCase() && (lastNewSplit[0] === lastNewSplit[0].toUpperCase())) {
+            return `${firstName + ' ' + lastName}`;
+        } else {
+            firstNewSplit[0] = firstNewSplit[0].toUpperCase();
 
-        lastNameSplit[0] = lastNameSplit[0].toUpperCase();
-        lastNameSplit[1] = lastNameSplit[1].toUpperCase()
+            lastNewSplit[0] = lastNewSplit[0].toUpperCase();
+            lastNewSplit[1] = lastNewSplit[1].toUpperCase()
 
-        firstName = firstNameSplit.join("");
-        lastName = lastNameSplit.join("");
+            firstName = firstNewSplit.join("");
+            lastName = lastNewSplit.join("");
 
-        return `${firstName + ' ' + lastName}`;
+            return `${firstName + ' ' + lastName}`;
+        }
     }
 }
