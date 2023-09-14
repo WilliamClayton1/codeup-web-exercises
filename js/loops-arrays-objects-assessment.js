@@ -179,12 +179,17 @@ function capitalizeName(str) {
     let firstNameSplit = firstName.split("");
     let lastNameSplit = lastName.split("");
 
-    firstNameSplit[0] = firstNameSplit[0].toUpperCase();
+    if (firstNameSplit[0] === firstNameSplit[0].toUpperCase() && (lastNameSplit[0] === lastNameSplit[0].toUpperCase())) {
+        return `${firstName + ' ' + lastName}`;
+    } else {
+        firstNameSplit[0] = firstNameSplit[0].toUpperCase();
 
-    lastNameSplit[0] = lastNameSplit[0].toUpperCase();
+        lastNameSplit[0] = lastNameSplit[0].toUpperCase();
+        lastNameSplit[1] = lastNameSplit[1].toUpperCase()
 
-    firstName = firstNameSplit.join("");
-    lastName = lastNameSplit.join("");
+        firstName = firstNameSplit.join("");
+        lastName = lastNameSplit.join("");
 
-    return `${firstName + ' ' + lastName}`;
+        return `${firstName + ' ' + lastName}`;
+    }
 }
