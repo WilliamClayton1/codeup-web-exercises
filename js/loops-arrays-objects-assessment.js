@@ -173,7 +173,7 @@ function analyzeWord(str){
 // capitalizeName('Nathan drake') // "Nathan Drake"
 
 function capitalizeName(str) {
-    if (str.includes(" ")) {
+    if (str.includes(" ") && str.includes(",")) {
         let firstName = str.split(" ")[0];
         let lastName = str.split(" ")[1];
         let firstNameSplit = firstName.split("");
@@ -191,7 +191,7 @@ function capitalizeName(str) {
 
             return `${firstName + ' ' + lastName}`;
         }
-    } else {
+    } else if (!str.includes(" ") && str.includes(',')) {
         let firstName = str.split(",")[0];
         let lastName = str.split(",")[1];
         let firstNewSplit = firstName.split("");
@@ -209,5 +209,7 @@ function capitalizeName(str) {
 
             return `${firstName + ' ' + lastName}`;
         }
+    } else if (!str.includes(" ") && !str.includes(',')) {
+        return str;
     }
 }

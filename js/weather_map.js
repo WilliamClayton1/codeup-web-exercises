@@ -9,6 +9,7 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
     let forecastData = data.list;
     let html = "";
 
+    //function to gather, loop, and display data
     function weatherData(forecast) {
         for (let i = 0; i < forecast.length; i += 8) {
 
@@ -40,10 +41,11 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
             $("#insert-weather").html(html);
         }
     }
-        //location stored in variables
+    //location stored in variables
     let location = `${data.city.coord.lon},${data.city.coord.lat}`;
     let lonLat = location.split(',')
 
+    //displays city name on html
     function userLocation(cityAndState) {
         $("#currentCity").html(`${capitalizeName(cityAndState)}`)
         $("#citySearch").attr("value", cityAndState)
@@ -57,17 +59,31 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
             center: lonLat, // starting position [lng, lat]
             zoom: 2, // starting zoom
         });
+
     //marker will populate with a users city and state input
     let marker = new mapboxgl.Marker({draggable: true})
-
     function markerLocation(newLocation, token, pin) {
         geocode(newLocation, token).then(function(result) {
             pin.setLngLat(result)
             pin.addTo(map)
             map.setCenter(result);
             map.setZoom(14);
+
+            //drag and drop marker to see weather forecast in different areas
             function dragEnd() {
                 let lngLat = pin.getLngLat();
+                let dragUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
+                $.get(dragUrl).done((dragData) => {
+                    let newData = dragData.list
+                    console.log(dragUrl);
+                    html = "";
+                    let newName = `${dragData.city.name}, ${dragData.city.country}`
+
+                    console.log(newName);
+                    console.log(dragData.city.country);
+                    weatherData(newData)
+                    userLocation(newName)
+                })
             }
             pin.on('dragend', dragEnd);
         })
@@ -92,13 +108,13 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
         forecastData = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
         console.log(forecastData);
         $.get(forecastData).done((newData) => {
-            let update = newData.list
             html = "";
+            let update = newData.list
 
             location = `${newData.city.coord.lon},${newData.city.coord.lat}`;
             lonLat = location.split(',')
 
-            weatherData(newData)
+            weatherData(update)
             userLocation(name)
             markerLocation(name, MAPBOX_API_TOKEN, marker)
 
