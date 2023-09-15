@@ -75,7 +75,7 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
                 let lngLat = pin.getLngLat();
                 map.flyTo({
                     center: lngLat,
-                    zoom: 12,
+                    zoom: 14,
                     essential: true,
                 })
                 let dragUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`

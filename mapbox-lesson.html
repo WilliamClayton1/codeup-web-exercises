@@ -32,15 +32,15 @@
 		map.setZoom(17);
 	});
 	//
-	// reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_API_TOKEN).then(function(results) {
-	// 	// logs the address for The Alamo
-	// 	console.log(results);
-	// 	geocode(results, MAPBOX_API_TOKEN).then(function(result) {
-	// 		console.log(result);
-	// 		map.setCenter(result);
-	// 		map.setZoom(17);
-	// 	});
-	// });
+	reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_API_TOKEN).then(function(results) {
+		// logs the address for The Alamo
+		console.log(results);
+		geocode(results, MAPBOX_API_TOKEN).then(function(result) {
+			console.log(result);
+			map.setCenter(result);
+			map.setZoom(17);
+		});
+	});
 
 	// Geocoding with a place maker
 	let alamoInfo = {
@@ -61,6 +61,11 @@
 	}
 
 	placeMarkerAndPopup(alamoInfo, MAPBOX_API_TOKEN, map);
+	let name = 'san antonio'
+
+	let data = `https://api.openweathermap.org/data/2.5/forecast?q=sanantonio&appid=${WEATHER_API_TOKEN}`
+	console.log(data);
+
 </script>
 </body>
 </html>
