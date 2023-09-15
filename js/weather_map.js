@@ -69,20 +69,24 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
             map.setCenter(result);
             map.setZoom(14);
 
+
             //drag and drop marker to see weather forecast in different areas
             function dragEnd() {
                 let lngLat = pin.getLngLat();
+                map.flyTo({
+                    center: lngLat,
+                    zoom: 12,
+                    essential: true,
+                })
                 let dragUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
                 $.get(dragUrl).done((dragData) => {
                     let newData = dragData.list
                     console.log(dragUrl);
                     html = "";
                     let newName = `${dragData.city.name}, ${dragData.city.country}`
-
-                    console.log(newName);
-                    console.log(dragData.city.country);
                     weatherData(newData)
-                    userLocation(newName)
+                    $("#currentCity").html(`${newName}`)
+                    $("#citySearch").attr("value", newName)
                 })
             }
             pin.on('dragend', dragEnd);
@@ -111,12 +115,20 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
             html = "";
             let update = newData.list
 
-            location = `${newData.city.coord.lon},${newData.city.coord.lat}`;
-            lonLat = location.split(',')
+            //marker flies to location
+            geocode(name, MAPBOX_API_TOKEN).then(function(result) {
+                console.log(result);
+                marker.setLngLat(result)
+                marker.addTo(map)
+                map.flyTo({
+                    center: result,
+                    essential: true,
+                })
+            });
 
             weatherData(update)
             userLocation(name)
-            markerLocation(name, MAPBOX_API_TOKEN, marker)
+            // markerLocation(name, MAPBOX_API_TOKEN, marker)
 
         })
     })
