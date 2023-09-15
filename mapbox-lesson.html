@@ -66,6 +66,15 @@
 	let data = `https://api.openweathermap.org/data/2.5/forecast?q=sanantonio&appid=${WEATHER_API_TOKEN}`
 	console.log(data);
 
+	let str = 'will clayton here'
+	if (str.includes(' ')) {
+		str = str.split('')
+		str = str.filter((str) =>
+			str !== ' '
+		)
+		console.log(str);
+	}
+
 </script>
 </body>
 </html>

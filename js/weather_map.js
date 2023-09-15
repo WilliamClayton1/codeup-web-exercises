@@ -128,8 +128,15 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
 
             weatherData(update)
             userLocation(name)
-            // markerLocation(name, MAPBOX_API_TOKEN, marker)
-
+            // code deletes white space
+            // let str = 'will clayton here'
+            // if (str.includes(' ')) {
+            //     str = str.split('')
+            //     str = str.filter((str) =>
+            //         str !== ' '
+            //     )
+            //     console.log(str);
+            // }
         })
     })
 })
