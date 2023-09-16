@@ -184,7 +184,6 @@ function capitalizeName(str) {
             firstNameSplit[0] = firstNameSplit[0].toUpperCase();
 
             lastNameSplit[0] = lastNameSplit[0].toUpperCase();
-            lastNameSplit[1] = lastNameSplit[1].toUpperCase()
 
             firstName = firstNameSplit.join("");
             lastName = lastNameSplit.join("");
@@ -213,3 +212,41 @@ function capitalizeName(str) {
         return str;
     }
 }
+//
+// function capitalizeName(str) {
+//     if (!str.includes(' ') && !str.includes(',')) {
+//         let firstName = str.split('');
+//         if (firstName[0] !== firstName[0].toUpperCase()) {
+//             return `${firstName.join('').toUpperCase()}`;
+//         }
+//         name = name.join('');
+//     } else if (!str.includes(' ') && str.includes(',')) {
+//         let firstName = str.split(",")[0];
+//         let lastName = str.split(",")[1];
+//         let firstNewSplit = firstName.split("");
+//         let lastNewSplit = lastName.split("");
+//         if (firstNewSplit[0] !== firstNewSplit[0].toUpperCase() && (lastNewSplit[0] !== lastNewSplit[0].toUpperCase())) {
+//             firstNewSplit[0] = firstNewSplit[0].toUpperCase();
+//             lastNewSplit[0] = lastNewSplit[0].toUpperCase();
+//             firstName = firstNewSplit.join("");
+//             lastName = lastNewSplit.join("");
+//             return `${firstName + ' ' + lastName}`;
+//         } else {
+//             return `${firstName + ' ' + lastName}`;
+//         }
+//     } else if (!str.includes(',') && str.includes(' ')) {
+//         return str
+//     } else if (str.includes(' ') && str.includes(',')) {
+//         let firstName = str.split(",")[0];
+//         let lastName = str.split(",")[1];
+//         let firstNameSplit = firstName.split("");
+//         let lastNameSplit = lastName.split("");
+//         if (firstNameSplit[0] !== firstNameSplit[0].toUpperCase() && (lastNameSplit[0] !== lastNameSplit[0].toUpperCase())) {
+//             firstNameSplit[0] = firstNameSplit[0].toUpperCase();
+//             lastNameSplit[0] = lastNameSplit[0].toUpperCase();
+//             firstName = firstNameSplit.join("");
+//             lastName = lastNameSplit.join("");
+//             return `${firstName + ' ' + lastName}`;
+//         }
+//     }
+// }

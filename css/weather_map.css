@@ -18,17 +18,3 @@
     align-self: end;
     font-size: 24px;
 }
-#search-btn {
-    display: block;
-    position: relative;
-    margin: 0 auto;
-    width: 50%;
-    height: 40px;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-    background: #ee8a65;
-}

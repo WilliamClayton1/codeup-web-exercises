@@ -2,16 +2,14 @@
 //Current weather for Converse, TX
 let name = `Converse,TX`
 let CURRENT_WEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
-console.log(CURRENT_WEATHER_URL);
 
 $.get(CURRENT_WEATHER_URL).done((data) => {
-
     let forecastData = data.list;
     let html = "";
 
     //function to gather, loop, and display data
     function weatherData(forecast) {
-        for (let i = 0; i < forecast.length; i += 8) {
+        for (let i = 0; i < forecast.length; i += 10) {
 
             //date conversion
             let date = new Date(forecast[i].dt_txt);
@@ -47,96 +45,63 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
 
     //displays city name on html
     function userLocation(cityAndState) {
-        $("#currentCity").html(`${capitalizeName(cityAndState)}`)
-        $("#citySearch").attr("value", cityAndState)
+        $("#currentCity").html(`${cityAndState}`)
+        // $("#citySearch").attr("value", cityAndState)
+        $(".mapboxgl-ctrl-geocoder--input").attr("value", cityAndState)
     }
 
-        //mapbox map
-        mapboxgl.accessToken = MAPBOX_API_TOKEN;
-        const map = new mapboxgl.Map({
-            container: 'insert-map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v11', // style URL
-            center: lonLat, // starting position [lng, lat]
-            zoom: 2, // starting zoom
-        });
+    //mapbox map
+    mapboxgl.accessToken = MAPBOX_API_TOKEN;
+    const map = new mapboxgl.Map({
+        container: 'insert-map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        center: lonLat, // starting position [lng, lat]
+        zoom: 13, // starting zoom
+    });
 
-    //marker will populate with a users city and state input
-    let marker = new mapboxgl.Marker({draggable: true})
-    function markerLocation(newLocation, token, pin) {
-        geocode(newLocation, token).then(function(result) {
-            pin.setLngLat(result)
-            pin.addTo(map)
-            map.setCenter(result);
-            map.setZoom(14);
+    //Geocoder search
+    let geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        marker: false,
+        mapboxgl: mapboxgl
+    })
 
+    map.addControl(
+        geocoder.on('result', function(result) {
+            let marker = new mapboxgl.Marker({ draggable: true, color: "pink" })
+                .setLngLat(result.result.center)
+                .addTo(map)
+            let address = result.result.place_name
+            $("#currentCity").html(`${address}`)
 
-            //drag and drop marker to see weather forecast in different areas
             function dragEnd() {
-                let lngLat = pin.getLngLat();
+                let lngLat = marker.getLngLat()
+
+                reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(results) {
+                    $('input[type=text].mapboxgl-ctrl-geocoder--input').val(results)
+                })
+
                 map.flyTo({
                     center: lngLat,
-                    zoom: 14,
+                    zoom: 13,
                     essential: true,
                 })
+
                 let dragUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
+                console.log(dragUrl);
                 $.get(dragUrl).done((dragData) => {
                     let newData = dragData.list
-                    console.log(dragUrl);
                     html = "";
                     let newName = `${dragData.city.name}, ${dragData.city.country}`
-                    weatherData(newData)
                     $("#currentCity").html(`${newName}`)
-                    $("#citySearch").attr("value", newName)
+                    weatherData(newData)
                 })
             }
-            pin.on('dragend', dragEnd);
+            marker.on('dragend', dragEnd);
         })
-    }
-
+    )
+    //populates weather for current city
     weatherData(forecastData);
     userLocation(name);
-    markerLocation(name, MAPBOX_API_TOKEN, marker)
 
-
-    //link search button to weather api
-    $("#search-btn").on("click", function (input) {
-
-        //button on click should take original input and replace with users input
-        let userInput = document.querySelector('#citySearch').value;
-        name = userInput.split('');
-        let nameIndex = name.indexOf(" ");
-        let removeSpace = name.splice(nameIndex, 0);
-        name = name.join('');
-
-        //capturing and requesting new data from user's input
-        forecastData = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
-        console.log(forecastData);
-        $.get(forecastData).done((newData) => {
-            html = "";
-            let update = newData.list
-
-            //marker flies to location
-            geocode(name, MAPBOX_API_TOKEN).then(function(result) {
-                console.log(result);
-                marker.setLngLat(result)
-                marker.addTo(map)
-                map.flyTo({
-                    center: result,
-                    essential: true,
-                })
-            });
-
-            weatherData(update)
-            userLocation(name)
-            // code deletes white space
-            // let str = 'will clayton here'
-            // if (str.includes(' ')) {
-            //     str = str.split('')
-            //     str = str.filter((str) =>
-            //         str !== ' '
-            //     )
-            //     console.log(str);
-            // }
-        })
-    })
 })

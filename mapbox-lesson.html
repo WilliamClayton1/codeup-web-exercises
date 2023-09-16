@@ -9,7 +9,8 @@
 </head>
 <body>
 
-
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 <div id='map' style='width: 100%; height: 700px;'></div>
 <script src="js/mapbox-geocoder-utils.js"></script>
 <script src="js/keys.js"></script>
@@ -22,21 +23,55 @@
 		zoom: 15, // starting zoom
 	});
 
-	let marker = new mapboxgl.Marker().setLngLat([-98.6089, 29.5994]).addTo(map);
-	let popup = new mapboxgl.Popup().setHTML("<p>Six Flags!</p>");
-	marker.setPopup(popup);
+
+	let geocoder = new MapboxGeocoder({
+		accessToken: mapboxgl.accessToken,
+		marker: false,
+		mapboxgl: mapboxgl
+	})
+
+
+	// Add the control to the map.
+	map.addControl(
+			geocoder.on('result', function(result) {
+				console.log(result.result);
+				let marker = new mapboxgl.Marker({ draggable: true, color: "pink" })
+						.setLngLat(result.result.center)
+						.addTo(map)
+
+				function dragEnd() {
+					let lngLat = marker.getLngLat()
+					let lng = lngLat[0]
+					let lat = lngLat[1]
+					console.log(lngLat);
+					console.log(lng);
+					console.log(lat);
+					map.flyTo({
+						center: lngLat,
+						zoom: 13,
+						essential: true,
+					})
+					reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(results) {
+
+						console.log(results);
+					})
+				}
+				marker.on('dragend', dragEnd);
+			})
+	)
+
 
 	geocode("600 Navarro St #350, San Antonio, TX 78205", MAPBOX_API_TOKEN).then(function(result) {
-		console.log(result);
+		// console.log(result);
 		map.setCenter(result);
 		map.setZoom(17);
 	});
 	//
 	reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_API_TOKEN).then(function(results) {
 		// logs the address for The Alamo
-		console.log(results);
+		// console.log(results);
 		geocode(results, MAPBOX_API_TOKEN).then(function(result) {
-			console.log(result);
+			// console.log(result);
 			map.setCenter(result);
 			map.setZoom(17);
 		});
@@ -48,32 +83,37 @@
 		popupHTML: "<p>Remember the Alamo!</p>"
 	};
 
-	function placeMarkerAndPopup(info, token, map) {
-		geocode(info.address, token).then(function(coordinates) {
-			let popup = new mapboxgl.Popup()
-					.setHTML(info.popupHTML);
-			let marker = new mapboxgl.Marker()
-					.setLngLat(coordinates)
-					.addTo(map)
-					.setPopup(popup);
-			popup.addTo(map);
-		});
-	}
+	// function placeMarkerAndPopup(info, token, map) {
+	// 	geocode(info.address, token).then(function(coordinates) {
+	// 		let popup = new mapboxgl.Popup()
+	// 				.setHTML(info.popupHTML);
+	// 		let marker = new mapboxgl.Marker()
+	// 				.setLngLat(coordinates)
+	// 				.addTo(map)
+	// 				.setPopup(popup);
+	// 		popup.addTo(map);
+	// 	});
+	// }
 
-	placeMarkerAndPopup(alamoInfo, MAPBOX_API_TOKEN, map);
-	let name = 'san antonio'
+	// placeMarkerAndPopup(alamoInfo, MAPBOX_API_TOKEN, map);
+	// let name = 'san antonio'
 
 	let data = `https://api.openweathermap.org/data/2.5/forecast?q=sanantonio&appid=${WEATHER_API_TOKEN}`
-	console.log(data);
+	// console.log(data);
 
-	let str = 'will clayton here'
-	if (str.includes(' ')) {
-		str = str.split('')
-		str = str.filter((str) =>
-			str !== ' '
-		)
-		console.log(str);
-	}
+	let mapboxInput = document.querySelector(".mapboxgl-ctrl-geocoder--input");
+
+	let usersStr = "";
+	document.body.addEventListener( 'input', function ( event ) {
+		if( event.target.className == 'mapboxgl-ctrl-geocoder--input' ) {
+			// console.log(event.data);
+
+			usersStr += event.data;
+
+			// console.log(`Our search so far? ${usersStr}`);
+		};
+	} );
+
 
 </script>
 </body>
