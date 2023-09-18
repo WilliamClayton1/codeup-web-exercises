@@ -59,14 +59,16 @@ let totalYears = yearsOfExperience.reduce((start, year) => {
 console.log(totalYears);
 
 //reduce problem 2
-let usersEmail = users.map((user) => {
-    return user.email
-})
 
-let email = usersEmail.reduce((start, str) => {
 
-})
+let emails = users.reduce((start, str) => {
+    if (start.length < str.email.length) {
+        start = str.email
+    }
+    return start
+}, '');
 
+console.log(emails);
 
 //reduce problem 3
 let strName = users.reduce((start, user) => {
