@@ -1,8 +1,8 @@
 "use strict";
-//Current weather for Converse, TX
 let name = `Converse, TX`
 let CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
 
+//weather icons
 let sunny = "https://openweathermap.org/img/wn/01d.png";
 let fewClouds = "https://openweathermap.org/img/wn/02d.png";
 let scattered = "https://openweathermap.org/img/wn/03d.png";
@@ -13,7 +13,7 @@ let thunderstorm = "https://openweathermap.org/img/wn/11d.png";
 let snow = "https://openweathermap.org/img/wn/13d.png";
 let mist = "https://openweathermap.org/img/wn/50d.png";
 
-
+//displays icon based on weather cloud coverage
 function cloudCoverage(sky) {
     if (sky === 'clear sky') {
         return sunny
@@ -76,15 +76,17 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             $("#insert-weather").html(html);
         }
     }
-    //location stored in variables
-    let location = `${data.city.coord.lon},${data.city.coord.lat}`;
-    let lonLat = location.split(',')
 
     //displays city name on html
     function userLocation(cityAndState) {
         $("#currentCity").html(`${cityAndState}`)
         $(".mapboxgl-ctrl-geocoder--input").attr("value", cityAndState)
     }
+
+    //location stored in variables
+    let location = `${data.city.coord.lon},${data.city.coord.lat}`;
+    let lonLat = location.split(',')
+    console.log(lonLat);
 
     //mapbox map
     mapboxgl.accessToken = MAPBOX_API_TOKEN;
@@ -95,6 +97,9 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
         zoom: 13, // starting zoom
     });
 
+    let marker = new mapboxgl.Marker({ draggable: true })
+    map.addControl(new mapboxgl.NavigationControl());
+
     //geocoder search
     let geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -102,11 +107,9 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
         mapboxgl: mapboxgl
     })
 
-    let marker = new mapboxgl.Marker({ draggable: true })
-    map.addControl(new mapboxgl.NavigationControl());
-
     map.addControl(
         geocoder.on('result', function(result) {
+
             marker.setLngLat(result.result.center)
             marker.addTo(map)
             let lngLat = marker.getLngLat()
@@ -143,11 +146,39 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                     $("#currentCity").html(`${newName}`)
                     weatherData(newData)
                 })
+
             }
             marker.on('dragend', dragEnd);
         }), 'top-left')
+
     //populates weather for current city
+    marker.setLngLat(lonLat);
+    marker.addTo(map);
+
+    //second drag function
+    function drag() {
+        let lngLat = marker.getLngLat()
+        reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(newData) {
+            $('input[type=text].mapboxgl-ctrl-geocoder--input').val(newData)
+        })
+        map.flyTo({
+            center: lngLat,
+            zoom: 13,
+            essential: true,
+        })
+
+        //weather data based on marker placement
+        CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
+
+        $.get(CURRENT_FORECAST_URL).done((data) => {
+            let newData = data.list
+            html = "";
+            let newName = `${data.city.name}, ${data.city.country}`
+            $("#currentCity").html(`${newName}`)
+            weatherData(newData)
+        })
+    }
+    marker.on('dragend', drag)
     weatherData(forecastData);
     userLocation(name);
-
 })
