@@ -16,15 +16,15 @@
 <body>
 	<div class="page-wrapper bg-primary-subtle">
 		<!--main header-->
-		<header class="p-3 bg-primary text-white">
+		<header class="p-3 bg-primary bg-gradient text-white position-absolute z-1 w-100">
 			<div class="d-flex justify-content-between">
-				<h1 class="m-0"><strong>Weather App</strong></h1>
+				<h3 class="m-0"><strong>Weather App</strong></h3>
 				<p id="location" class="m-0"><strong>Current city: <span id="currentCity"></span></strong></p>
 			</div>
 		</header>
-		<main>
+		<main class="position-relative">
 			<!--weather cards-->
-			<section id="insert-weather" class="d-flex justify-content-around"></section>
+			<section id="insert-weather" class="d-flex justify-content-around w-100 position-absolute z-2"></section>
 			<!--mapbox container-->
 			<section id="insert-map"></section>
 		</main>

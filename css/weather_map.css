@@ -1,9 +1,13 @@
 @import "resets.css";
 @import "layout.css";
 
+
 #insert-map {
     width: 100%;
-    height: 575px;
+    height: 100vh;
+}
+#insert-weather {
+    top: 80px;
 }
 #location {
     align-self: end;
@@ -14,8 +18,9 @@ body {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+
 .card {
-    animation: fadeInAnimation ease 3s;
+    animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }

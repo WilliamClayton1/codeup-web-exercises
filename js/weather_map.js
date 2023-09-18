@@ -51,7 +51,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             let year = date.getFullYear();
             let month = ((date.getMonth() + 1).length !== 2 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1));
             let day = date.getDate();
-            let newDate = `${year}-${month}-${day}`
+            let newDate = `${month}-${day}-${year}`
 
             //weather data variables
             let highTemp = forecast[i].main.temp_max
@@ -62,7 +62,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             let pressure = forecast[i].main.pressure
 
             //code populates weather data into HTML
-            html += `<div class="card" style="width: 18rem;">`;
+            html += `<div class="card bg-primary opacity-75" style="width: 18rem;">`;
             html += `<p id="date" class="card-header text-center">${newDate}</p>`;
             html += `<div>`;
             html += `<p class="card-text text-center m-0"><ins>Temperature</ins></p>`;
@@ -95,13 +95,18 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
     mapboxgl.accessToken = MAPBOX_API_TOKEN;
     const map = new mapboxgl.Map({
         container: 'insert-map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v12', // style URL
+        style: 'mapbox://styles/mapbox/satellite-streets-v12',
         center: lonLat, // starting position [lng, lat]
         zoom: 13, // starting zoom
     });
 
-    let marker = new mapboxgl.Marker({ draggable: true })
-    map.addControl(new mapboxgl.NavigationControl());
+    let marker = new mapboxgl.Marker({ draggable: true, color: 'blue'})
+
+    map.addControl(new mapboxgl.NavigationControl({
+        container: 'body'
+    }), 'bottom-right');
+
+    map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
 
     //geocoder search
     let geocoder = new MapboxGeocoder({
@@ -117,6 +122,11 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             marker.addTo(map)
             let lngLat = marker.getLngLat()
 
+            map.flyTo({
+                center: lngLat,
+                zoom: 13,
+                essential: true,
+            })
             //weather data based on user input
             let USER_INPUT = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`;
             $.get(USER_INPUT).done((data) => {
@@ -152,7 +162,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
 
             }
             marker.on('dragend', dragEnd);
-        }), 'top-left')
+        }), 'bottom-left')
 
     //populates weather for current city
     marker.setLngLat(lonLat);
