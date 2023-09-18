@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Advanced Collection Methods</title>
+</head>
+<body>
+
+<h1>Hello - how about some advanced collection methods?</h1>
+
+<script src="js/map-filter-reduce.js"></script>
+<script>
+	let ourPets = [
+		{
+			species: "Cat",
+			name: "Sassy",
+			primaryColor: "gray",
+			age: 5,
+			knowsTricks: false
+		},
+		{
+			species: "Dog",
+			name: "Lindsey",
+			primaryColor: "yellow",
+			age: 5,
+			knowsTricks: true
+		},
+		{
+			species: "Dog",
+			name: "Luna",
+			primaryColor: "gray",
+			age: 1,
+			knowsTricks: true
+		},
+		{
+			species: "Cat",
+			name: "Cali",
+			primaryColor: "gray,brown,white",
+			age: 5,
+			knowsTricks: false
+		},
+		{
+			species: "Bird",
+			name: "Tobi",
+			primaryColor: "green,black",
+			age: 1.5,
+			knowsTricks: true
+		},
+		{
+			species: "Cat",
+			name: "Pinch 'o Pepper",
+			primaryColor: "Black",
+			age: 2,
+			knowsTricks: true
+		}
+	]
+
+	//        .filter()
+	// Let's get cats only!
+	let catsOnlyArray = ourPets.filter((pet) => {
+		return pet.species === 'Cat';
+	})
+	// console.log(catsOnlyArray);
+	let petUnderFive = ourPets.filter((pet) => {
+		return pet.age < 5;
+	})
+
+	//    .map()
+	//Let's get an array of the cat ages with the human years math done! Some sources say multiplying by seven will get us the human age
+
+	let catsHumanAge = catsOnlyArray.map((cat) => {
+		return cat.age * 7;
+	})
+
+	// console.log(catsHumanAge);
+
+	//        .reduce()
+	// Can we use .reduce() to quickly sum up our pet's ages?
+
+	let totalPetAge = catsOnlyArray.reduce((total, pet) => {
+		 total + pet.age
+	}, 0)
+
+	// console.log(totalPetAge);
+
+	// Bonus:
+	// .some()
+
+	let ownsAlligator = ourPets.some((pet) => {
+		return pet.species.toLowerCase() === "alligator";
+	})
+    // console.log(`Do any of us own an alligator?`);
+	// console.log(ownsAlligator);
+
+	let ownsCat = ourPets.some((pet) => {
+		return pet.species === 'Cat'
+	})
+    // console.log(`Do any of us own a cat?`);
+	// console.log(ownsCat);
+
+	let ownsGilly = ourPets.some((pet) => {
+		return pet.name.toLowerCase() === 'gilly';
+	})
+	// console.log(`Do any of us own a pet named 'Gilly'?`);
+	// console.log(ownsGilly);
+
+	let ownsSassy = ourPets.some((pet) => {
+		return pet.name === 'Sassy'
+	})
+	// console.log(`Do any of us own a pet named 'Sassy'`);
+	// console.log(ownsSassy);
+
+	//.find()
+	//Let's find a pet - where's my cat, Pinch?!
+
+
+   let pinchTheCat = "";
+	pinchTheCat = ourPets.find((pet) => {
+		return pet.name === 'Pinch o Pepper'
+	})
+//     console.log(`Did we find Pinch?`);
+// 	console.log(pinchTheCat);
+// 	console.log( ` %c／l、
+// （ﾟ､ ｡７ <<(mrow)
+//  l、ﾞ~ヽ
+//  じしf_,)ノ `, "color:#404040");
+
+</script>
+
+</body>
+</html>
