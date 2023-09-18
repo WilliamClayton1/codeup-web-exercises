@@ -64,12 +64,15 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             //code populates weather data into HTML
             html += `<div class="card" style="width: 18rem;">`;
             html += `<p id="date" class="card-header text-center">${newDate}</p>`;
-            html += `<div id="temp" class="card-text text-center"><p><strong>${lowTemp} / ${highTemp}</strong></p><img src='${cloudCoverage(coverage)}' alt='${coverage}'></div>`;
+            html += `<div>`;
+            html += `<p class="card-text text-center m-0"><ins>Temperature</ins></p>`;
+            html += `<div id="temp" class="card-text text-center"><p class="m-0"><strong>${lowTemp}&deg; / ${highTemp}&deg;</strong></p><img src='${cloudCoverage(coverage)}' alt='${coverage}'></div>`;
+            html += `</div>`;
             html += `<ul class="list-group list-group-flush">`
-            html += `<li class="list-group-item">Desription: ${coverage}</li>`;
-            html += `<li class="list-group-item">Humidity: ${humidity}</li>`;
-            html += `<li class="list-group-item">Wind: ${windSpeed}</li>`;
-            html += `<li class="list-group-item">Pressure: ${pressure}</li>`;
+            html += `<li class="list-group-item">Desription: <strong>${coverage}</strong></li>`;
+            html += `<li class="list-group-item">Humidity: <strong>${humidity}%</strong></li>`;
+            html += `<li class="list-group-item">Wind: <strong>${windSpeed} mph</strong></li>`;
+            html += `<li class="list-group-item">Pressure: <strong>${pressure}</strong></li>`;
             html += `</ul>`
             html += `</div>`;
 
