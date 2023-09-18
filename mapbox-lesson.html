@@ -9,6 +9,24 @@
 </head>
 <body>
 
+
+<div class="card" style="width: 18rem;">
+	<div class="card-body">
+		<h5 class="card-title">Card title</h5>
+		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	</div>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">An item</li>
+		<li class="list-group-item">A second item</li>
+		<li class="list-group-item">A third item</li>
+	</ul>
+	<div class="card-body">
+		<a href="#" class="card-link">Card link</a>
+		<a href="#" class="card-link">Another link</a>
+	</div>
+</div>
+
+
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 <div id='map' style='width: 100%; height: 700px;'></div>
@@ -30,14 +48,17 @@
 		mapboxgl: mapboxgl
 	})
 
+	let marker = new mapboxgl.Marker({ draggable: true, color: "pink" })
+			// .setLngLat()
+			// .addTo(map)
 
 	// Add the control to the map.
 	map.addControl(
 			geocoder.on('result', function(result) {
 				console.log(result.result);
-				let marker = new mapboxgl.Marker({ draggable: true, color: "pink" })
-						.setLngLat(result.result.center)
-						.addTo(map)
+
+				marker.setLngLat(result.result.center)
+				marker.addTo(map)
 
 				function dragEnd() {
 					let lngLat = marker.getLngLat()
@@ -113,6 +134,11 @@
 			// console.log(`Our search so far? ${usersStr}`);
 		};
 	} );
+
+
+
+
+
 
 
 </script>

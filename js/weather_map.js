@@ -1,15 +1,50 @@
 "use strict";
 //Current weather for Converse, TX
-let name = `Converse,TX`
-let CURRENT_WEATHER_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
+let name = `Converse, TX`
+let CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
 
-$.get(CURRENT_WEATHER_URL).done((data) => {
+let sunny = "https://openweathermap.org/img/wn/01d.png";
+let fewClouds = "https://openweathermap.org/img/wn/02d.png";
+let scattered = "https://openweathermap.org/img/wn/03d.png";
+let broken = "https://openweathermap.org/img/wn/04d.png";
+let rain = "https://openweathermap.org/img/wn/09d.png";
+let shower = "https://openweathermap.org/img/wn/10d.png";
+let thunderstorm = "https://openweathermap.org/img/wn/11d.png";
+let snow = "https://openweathermap.org/img/wn/13d.png";
+let mist = "https://openweathermap.org/img/wn/50d.png";
+
+
+function cloudCoverage(sky) {
+    if (sky === 'clear sky') {
+        return sunny
+    } else if (sky === 'few clouds') {
+        return fewClouds
+    } else if (sky === 'scattered clouds'|| sky === 'broken clouds') {
+        return scattered
+    } else if (sky === 'overcast clouds') {
+        return broken
+    } else if (sky === 'shower rain' || sky === 'light rain') {
+        return shower
+    } else if (sky === 'rain' || sky === 'moderate rain') {
+        return rain
+    } else if (sky === 'thunderstorm') {
+        return thunderstorm
+    } else if (sky === 'snow') {
+        return snow
+    } else if (sky === 'mist') {
+        return mist
+    }
+}
+
+$.get(CURRENT_FORECAST_URL).done((data) => {
+
     let forecastData = data.list;
     let html = "";
 
     //function to gather, loop, and display data
     function weatherData(forecast) {
-        for (let i = 0; i < forecast.length; i += 10) {
+
+        for (let i = 0; i < forecast.length; i += 8) {
 
             //date conversion
             let date = new Date(forecast[i].dt_txt);
@@ -27,13 +62,15 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
             let pressure = forecast[i].main.pressure
 
             //code populates weather data into HTML
-            html += `<div class="column">`;
-            html += `<p id="date">${newDate}</p>`;
-            html += `<div id="temp"><p>${lowTemp} / ${highTemp}</p></div>`;
-            html += `<p>Desription: ${coverage}</p>`;
-            html += `<p>Humidity: ${humidity}</p>`;
-            html += `<p>Wind: ${windSpeed}</p>`;
-            html += `<p>Pressure: ${pressure}</p>`;
+            html += `<div class="card" style="width: 18rem;">`;
+            html += `<p id="date" class="card-header text-center">${newDate}</p>`;
+            html += `<div id="temp" class="card-text text-center"><p><strong>${lowTemp} / ${highTemp}</strong></p><img src='${cloudCoverage(coverage)}' alt='${coverage}'></div>`;
+            html += `<ul class="list-group list-group-flush">`
+            html += `<li class="list-group-item">Desription: ${coverage}</li>`;
+            html += `<li class="list-group-item">Humidity: ${humidity}</li>`;
+            html += `<li class="list-group-item">Wind: ${windSpeed}</li>`;
+            html += `<li class="list-group-item">Pressure: ${pressure}</li>`;
+            html += `</ul>`
             html += `</div>`;
 
             $("#insert-weather").html(html);
@@ -46,7 +83,6 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
     //displays city name on html
     function userLocation(cityAndState) {
         $("#currentCity").html(`${cityAndState}`)
-        // $("#citySearch").attr("value", cityAndState)
         $(".mapboxgl-ctrl-geocoder--input").attr("value", cityAndState)
     }
 
@@ -59,47 +95,57 @@ $.get(CURRENT_WEATHER_URL).done((data) => {
         zoom: 13, // starting zoom
     });
 
-    //Geocoder search
+    //geocoder search
     let geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         marker: false,
         mapboxgl: mapboxgl
     })
 
+    let marker = new mapboxgl.Marker({ draggable: true })
+    map.addControl(new mapboxgl.NavigationControl());
+
     map.addControl(
         geocoder.on('result', function(result) {
-            let marker = new mapboxgl.Marker({ draggable: true, color: "pink" })
-                .setLngLat(result.result.center)
-                .addTo(map)
-            let address = result.result.place_name
-            $("#currentCity").html(`${address}`)
+            marker.setLngLat(result.result.center)
+            marker.addTo(map)
+            let lngLat = marker.getLngLat()
+
+            //weather data based on user input
+            let USER_INPUT = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`;
+            $.get(USER_INPUT).done((data) => {
+                let newData = data.list
+                html = "";
+                let address = `${data.city.name}, ${data.city.country}`
+                $("#currentCity").html(`${address}`)
+                weatherData(newData)
+            })
 
             function dragEnd() {
-                let lngLat = marker.getLngLat()
 
+                lngLat = marker.getLngLat()
                 reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(results) {
                     $('input[type=text].mapboxgl-ctrl-geocoder--input').val(results)
                 })
-
                 map.flyTo({
                     center: lngLat,
                     zoom: 13,
                     essential: true,
                 })
 
-                let dragUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
-                console.log(dragUrl);
-                $.get(dragUrl).done((dragData) => {
-                    let newData = dragData.list
+                //weather data based on marker placement
+                CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
+
+                $.get(CURRENT_FORECAST_URL).done((data) => {
+                    let newData = data.list
                     html = "";
-                    let newName = `${dragData.city.name}, ${dragData.city.country}`
+                    let newName = `${data.city.name}, ${data.city.country}`
                     $("#currentCity").html(`${newName}`)
                     weatherData(newData)
                 })
             }
             marker.on('dragend', dragEnd);
-        })
-    )
+        }), 'top-left')
     //populates weather for current city
     weatherData(forecastData);
     userLocation(name);
