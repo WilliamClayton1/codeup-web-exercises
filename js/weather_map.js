@@ -120,6 +120,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
         mapboxgl: mapboxgl
     })
 
+    //add marker based on user search
     map.addControl(
         geocoder.on('result', function(result) {
 
@@ -132,6 +133,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                 zoom: 13,
                 essential: true,
             })
+
             //weather data based on user input
             let USER_INPUT = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`;
             $.get(USER_INPUT).done((data) => {
@@ -141,7 +143,6 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                 $("#currentCity").html(`${address}`)
                 weatherData(newData)
             })
-
             function dragEnd() {
 
                 lngLat = marker.getLngLat()
