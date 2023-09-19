@@ -1,38 +1,41 @@
-"use strict";
-let name = `Converse, TX`
+"use strict"
+import {MAPBOX_API_TOKEN, WEATHER_API_TOKEN} from "./keys.js";
+import {reverseGeocode} from "./mapbox-geocoder-utils.js";
+
+name = `Converse, TX`
 let CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
-
-//weather icons
-let sunny = "https://openweathermap.org/img/wn/01d.png";
-let fewClouds = "https://openweathermap.org/img/wn/02d.png";
-let scattered = "https://openweathermap.org/img/wn/03d.png";
-let broken = "https://openweathermap.org/img/wn/04d.png";
-let rain = "https://openweathermap.org/img/wn/09d.png";
-let shower = "https://openweathermap.org/img/wn/10d.png";
-let thunderstorm = "https://openweathermap.org/img/wn/11d.png";
-let snow = "https://openweathermap.org/img/wn/13d.png";
-let mist = "https://openweathermap.org/img/wn/50d.png";
-
-//displays icon based on weather cloud coverage
 function cloudCoverage(sky) {
-    if (sky === 'clear sky') {
-        return sunny
-    } else if (sky === 'few clouds') {
-        return fewClouds
-    } else if (sky === 'scattered clouds'|| sky === 'broken clouds') {
-        return scattered
-    } else if (sky === 'overcast clouds') {
-        return broken
-    } else if (sky === 'shower rain' || sky === 'light rain') {
-        return shower
-    } else if (sky === 'rain' || sky === 'moderate rain') {
-        return rain
-    } else if (sky === 'thunderstorm') {
-        return thunderstorm
-    } else if (sky === 'snow') {
-        return snow
-    } else if (sky === 'mist') {
-        return mist
+    //weather icons
+    let sunny = "https://openweathermap.org/img/wn/01d.png";
+    let fewClouds = "https://openweathermap.org/img/wn/02d.png";
+    let scattered = "https://openweathermap.org/img/wn/03d.png";
+    let broken = "https://openweathermap.org/img/wn/04d.png";
+    let rain = "https://openweathermap.org/img/wn/09d.png";
+    let shower = "https://openweathermap.org/img/wn/10d.png";
+    let thunderstorm = "https://openweathermap.org/img/wn/11d.png";
+    let snow = "https://openweathermap.org/img/wn/13d.png";
+    let mist = "https://openweathermap.org/img/wn/50d.png";
+
+    //displays icon based on weather cloud coverage
+    switch (sky) {
+        case 'clear sky':
+            return sunny
+        case 'few clouds':
+            return fewClouds
+        case 'broken clouds' || 'scattered clouds':
+            return scattered
+        case 'overcast clouds':
+            return broken
+        case 'light rain' || 'shower rain':
+            return shower
+        case 'moderate rain' || 'rain' :
+            return rain
+        case 'thunderstorm':
+            return thunderstorm
+        case 'snow':
+            return snow
+        case 'mist':
+            return mist
     }
 }
 
@@ -62,7 +65,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             let pressure = forecast[i].main.pressure
 
             //code populates weather data into HTML
-            html += `<div class="card bg-primary opacity-75" style="width: 18rem;">`;
+            html += `<div class="card bg-primary bg-gradient" style="width: 18rem;">`;
             html += `<p id="date" class="card-header text-center">${newDate}</p>`;
             html += `<div>`;
             html += `<p class="card-text text-center m-0"><ins>Temperature</ins></p>`;
@@ -89,24 +92,26 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
     //location stored in variables
     let location = `${data.city.coord.lon},${data.city.coord.lat}`;
     let lonLat = location.split(',')
-    console.log(lonLat);
 
     //mapbox map
     mapboxgl.accessToken = MAPBOX_API_TOKEN;
     const map = new mapboxgl.Map({
         container: 'insert-map', // container ID
-        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+        style: 'mapbox://styles/mapbox/streets-v12',
         center: lonLat, // starting position [lng, lat]
         zoom: 13, // starting zoom
     });
 
-    let marker = new mapboxgl.Marker({ draggable: true, color: 'blue'})
+    let marker = new mapboxgl.Marker({ draggable: true, color: 'blue'});
 
+    //add zoom feature
     map.addControl(new mapboxgl.NavigationControl({
         container: 'body'
     }), 'bottom-right');
 
+    //add fullscreen option
     map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+
 
     //geocoder search
     let geocoder = new MapboxGeocoder({
@@ -150,9 +155,9 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                 })
 
                 //weather data based on marker placement
-                CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
+                let CURRENT_FORECAST = `https://api.openweathermap.org/data/2.5/forecast?lat=${lngLat.lat}&lon=${lngLat.lng}&appid=${WEATHER_API_TOKEN}&units=imperial`
 
-                $.get(CURRENT_FORECAST_URL).done((data) => {
+                $.get(CURRENT_FORECAST).done((data) => {
                     let newData = data.list
                     html = "";
                     let newName = `${data.city.name}, ${data.city.country}`
