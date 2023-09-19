@@ -37,30 +37,20 @@ const users = [
 ];
 
 //filter
-let userLanguage = users.filter((user) => {
-    return user.languages.length > 2;
-})
+let userLanguage = users.filter((user) => user.languages.length > 2)
 console.log(userLanguage);
 
 //map
-let userEmail = users.map((user) => {
-    return user.email
-})
+let userEmail = users.map((user) => user.email)
 console.log(userEmail);
 
 //reduce problem 1
-let yearsOfExperience = users.map((user) =>  {
-    return user.yearsOfExperience
-})
+let yearsOfExperience = users.map((user) => user.yearsOfExperience)
 
-let totalYears = yearsOfExperience.reduce((start, year) => {
-    return start += year
-})
+let totalYears = yearsOfExperience.reduce((start, year) => start += year)
 console.log(totalYears);
 
 //reduce problem 2
-
-
 let emails = users.reduce((start, str) => {
     if (start.length < str.email.length) {
         start = str.email
@@ -71,19 +61,20 @@ let emails = users.reduce((start, str) => {
 console.log(emails);
 
 //reduce problem 3
-let strName = users.reduce((start, user) => {
-    return start += `${user.name}, `
-}, `Your instructors are: `)
-console.log(strName);
+let StringName = users.reduce((accumulator, user, index) => {
+    if (index === (users.length - 1)) {
+        return accumulator +=`${user.name}.`;
+    } else {
+        return  accumulator += `${user.name}, `;
+    }
+}, 'Your Instructor are: ')
+console.log(StringName)
 
 // bonus
-// let languageList = users.map((user) => {
-//     return user.languages;
-// })
-
-
-
-// let newList = languageList.reduce((start, user) => {
-//     return start += `${user}, `
-// }, ' ')
-// console.log(newList);
+let languageList = users.map((user) => {
+    let lang = user.languages
+    let newArray = [];
+    let newList = lang.find((element) => {
+        console.log(element);
+    })
+})
