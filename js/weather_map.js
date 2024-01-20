@@ -4,6 +4,7 @@ import {reverseGeocode} from "./mapbox-geocoder-utils.js";
 
 name = `Converse, TX`
 let CURRENT_FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?q=${name},US&appid=${WEATHER_API_TOKEN}&units=imperial`;
+
 function cloudCoverage(sky) {
     //weather icons
     let sunny = "https://openweathermap.org/img/wn/01d.png";
@@ -102,7 +103,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
         zoom: 13, // starting zoom
     });
 
-    let marker = new mapboxgl.Marker({ draggable: true, color: 'blue'});
+    let marker = new mapboxgl.Marker({draggable: true, color: 'blue'});
 
     //add zoom feature
     map.addControl(new mapboxgl.NavigationControl({
@@ -122,7 +123,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
 
     //add marker based on user search
     map.addControl(
-        geocoder.on('result', function(result) {
+        geocoder.on('result', function (result) {
 
             marker.setLngLat(result.result.center)
             marker.addTo(map)
@@ -143,10 +144,11 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                 $("#currentCity").html(`${address}`)
                 weatherData(newData)
             })
+
             function dragEnd() {
 
                 lngLat = marker.getLngLat()
-                reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(results) {
+                reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function (results) {
                     $('input[type=text].mapboxgl-ctrl-geocoder--input').val(results)
                 })
                 map.flyTo({
@@ -167,6 +169,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
                 })
 
             }
+
             marker.on('dragend', dragEnd);
         }), 'bottom-left')
 
@@ -177,7 +180,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
     //second drag function
     function drag() {
         let lngLat = marker.getLngLat()
-        reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function(newData) {
+        reverseGeocode(lngLat, MAPBOX_API_TOKEN).then(function (newData) {
             $('input[type=text].mapboxgl-ctrl-geocoder--input').val(newData)
         })
         map.flyTo({
@@ -197,6 +200,7 @@ $.get(CURRENT_FORECAST_URL).done((data) => {
             weatherData(newData)
         })
     }
+
     marker.on('dragend', drag)
     weatherData(forecastData);
     userLocation(name);

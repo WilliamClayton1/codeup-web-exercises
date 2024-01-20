@@ -64,18 +64,18 @@
 //     }
 // }
 
-// let result = "";
-// let numberOfLoops = 9;
-// let currentLoop = 1;
-//
-// for(currentLoop; currentLoop <= numberOfLoops; currentLoop++) {
-//     let line = "";
-//     for(let i = 1; i <= currentLoop; i++) {
-//         line += currentLoop;
-//     }
-//     result += line + "\n";
-// }
-// console.log(result);
+let result = "";
+let numberOfLoops = 9;
+let currentLoop = 1;
+
+for(currentLoop; currentLoop <= numberOfLoops; currentLoop++) {
+    let line = "";
+    for(let i = 1; i <= currentLoop; i++) {
+        line += currentLoop;
+    }
+    result += line + "\n";
+}
+console.log(result);
 
 //loop creates an output of 100 to 5 in increments of 5
 // for(let i = 100; i > 1; i = i -5) {
