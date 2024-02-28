@@ -17,9 +17,6 @@
 
 .hello {
 
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
     position: absolute;
     right: 50%;
     bottom: 50%;
