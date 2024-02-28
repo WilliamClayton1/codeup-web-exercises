@@ -1,0 +1,50 @@
+@import "resets.css";
+@import "layout.css";
+
+.cover {
+
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+    position: absolute;
+    background-color: black;
+    color: white;
+
+}
+
+.hello {
+
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+
+}
+
+
+.ripple {
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    background-color: #5733ff;
+    transform: translate(-50%, -50%);
+    animation: explode 1.5s ease forwards
+
+}
+
+@keyframes explode{
+    to{
+        width: 5000px;
+        height: 5000px;
+        background-color: white;
+    }
+}
+
