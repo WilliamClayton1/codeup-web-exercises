@@ -1,6 +1,7 @@
 @import "resets.css";
 @import "layout.css";
 
+
 .cover {
 
     height: 100vh;
@@ -17,6 +18,7 @@
 
 .hello {
 
+    color: red;
     position: absolute;
     right: 50%;
     bottom: 50%;
@@ -35,6 +37,15 @@
     transform: translate(-50%, -50%);
     animation: explode 1.5s ease forwards
 
+}
+
+.placeholder {
+    min-height: 100px;
+    max-width: 100px;
+    background-color: blue;
+    position: relative;
+    left: 50%;
+    top: 50%;
 }
 
 @keyframes explode{
